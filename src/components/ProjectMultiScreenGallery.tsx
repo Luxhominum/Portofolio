@@ -61,75 +61,75 @@ const SCREENS_BY_PROJECT: Record<string, ScreenTab[]> = {
   'marketplace-sales-intelligence': [
     { 
       id: 'screen-1', 
-      title: '1. Executive Sales Overview', 
-      subtitle: 'Agregasi GMV & Pertumbuhan YoY', 
-      badge: 'Executive Dashboard',
-      description: 'Ringkasan performa penjualan multi-channel (Shopee, Tokopedia, TikTok) dengan pertumbuhan +24.8% YoY.'
+      title: '1. Intelijen Penjualan Eksekutif', 
+      subtitle: 'Ringkasan GMV & Metrik Utama', 
+      badge: 'Executive Summary',
+      description: 'Tampilan ringkasan eksekutif intelijen penjualan PGE dengan grafik metrik pendapatan dan performa multi-kanal.'
     },
     { 
       id: 'screen-2', 
-      title: '2. Tren Komparasi Lintas Tahun', 
-      subtitle: 'Analisis Musiman & Run-Rate', 
-      badge: 'Cross-Year Analytics',
-      description: 'Tabel komparasi volume penjualan 2025 vs 2026 per kuartal dan analisis dinamika seasonality pasar.'
+      title: '2. Tren & Pola Penjualan YoY', 
+      subtitle: 'Grafik Pertumbuhan Lintas Tahun', 
+      badge: 'Trend & Seasonality',
+      description: 'Visualisasi analitik pola penjualan komparatif antar tahun dan identifikasi dinamika musiman pasar.'
     },
     { 
       id: 'screen-3', 
-      title: '3. Estimasi Produksi & Stok', 
-      subtitle: 'Kalkulator Kebutuhan Batch Pabrik', 
-      badge: 'Demand Forecasting',
-      description: 'Kalkulator kebutuhan suplai produksi manufaktur dan kuota stok gudang dengan safety buffer 15%.'
+      title: '3. Volume & Proyeksi Produksi', 
+      subtitle: 'Perencanaan Kapasitas Suplai', 
+      badge: 'Production Planning',
+      description: 'Analisis pergerakan volume item terjual untuk dasar perencanaan kuota batch produksi dan stok.'
     },
     { 
       id: 'screen-4', 
-      title: '4. Performa Kategori & SKU', 
-      subtitle: 'Tingkat Perputaran & Margin', 
-      badge: 'SKU Margin Heatmap',
-      description: 'Matriks kontribusi margin laba kotor dan kecepatan perputaran stok barang untuk produk terlaris.'
+      title: '4. Performa Produk & SKU Table', 
+      subtitle: 'Tabel Komparasi Margin & Kategori', 
+      badge: 'Product Matrix',
+      description: 'Tabel komprehensif performa SKU produk unggulan, margin kontribusi, dan tingkat perputaran unit.'
     },
     { 
       id: 'screen-5', 
-      title: '5. Ingestion Multi-Marketplace', 
-      subtitle: 'Shopee, Tokopedia, TikTok Parser', 
-      badge: 'Data Normalizer',
-      description: 'Modul dropzone unggahan berkas laporan penjualan mentah dan proses pembersihan data otomatis.'
+      title: '5. Detail Produk Unggulan', 
+      subtitle: 'Filter Interaktif & Analisis SKU', 
+      badge: 'Interactive Filter',
+      description: 'Eksplorasi interaktif detail varian produk dan kontribusi penjualan per kategori.'
     },
   ],
   'enterprise-hr-governance': [
     { 
       id: 'screen-1', 
-      title: '1. Katalog Google Sheets HR', 
-      subtitle: 'Monitoring Seluruh Sheet Aktif', 
-      badge: 'Central Directory',
-      description: 'Direktori sentral pemetaan 24+ Google Sheets perusahaan dengan status proteksi rumus dan routing hak akses.'
+      title: '1. PGE Talent Pool Repository', 
+      subtitle: 'Candidate Database & Status', 
+      badge: 'Candidate Hub',
+      description: 'Repositori sentral pengelolaan database kandidat pelamar PGE dengan status seleksi terstruktur.'
     },
     { 
       id: 'screen-2', 
-      title: '2. Penilaian Kinerja Karyawan', 
-      subtitle: 'Formula & KPI Protection Shield', 
-      badge: 'Formula Shield',
-      description: 'Struktur pembobotan KPI (60% target + 40% kompetensi) dalam sel formula terkunci yang aman dari penimpaan manual.'
+      title: '2. Pipeline & Screening Pelamar', 
+      subtitle: 'Daftar Kandidat & Evaluasi Berkas', 
+      badge: 'Screening Pipeline',
+      description: 'Monitoring tahapan screening berkas pelamar kerja, kualifikasi posisi, dan riwayat seleksi.'
     },
     { 
       id: 'screen-3', 
-      title: '3. Talent Pool Kanban Board', 
-      subtitle: 'Screening hingga Tahap Offering', 
-      badge: 'Talent Pipeline',
-      description: 'Papan pelacak alur rekrutmen kandidat pelamar kerja mulai dari screening CV, tes teknis, interview, hingga penawaran.'
+      title: '3. Alur Rekrutmen Terpusat', 
+      subtitle: 'Workflow Tahapan Kandidat', 
+      badge: 'Talent Workflow',
+      description: 'Manajemen alur seleksi terpadu mulai dari verifikasi CV hingga tahapan interview tim.'
     },
     { 
       id: 'screen-4', 
-      title: '4. Lembar Penilaian Kandidat', 
-      subtitle: 'Rubrik Interview & Fit Scoring', 
-      badge: 'Evaluation Rubric',
-      description: 'Formulir penilaian terstruktur dengan rubrik kompetensi, catatan evaluasi HR, dan rekomendasi hiring.'
+      title: '4. Portal Asesmen On-Site', 
+      subtitle: 'Pelaksanaan Uji Kompetensi', 
+      badge: 'Assessment Portal',
+      description: 'Portal pelaksanaan asesmen on-site PGE untuk pengujian kompetensi dan penilaian langsung peserta.'
     },
     { 
       id: 'screen-5', 
-      title: '5. Hub Navigasi Alat Kantor', 
-      subtitle: 'Satu Pintu Akses Program Internal', 
-      badge: 'Operations Hub',
-      description: 'Direktori tautan kerja resmi kantor dan instrumen pemantau konsumsi kuota eksekusi Google Apps Script harian.'
+      title: '5. Rubrik Penilaian & Evaluasi', 
+      subtitle: 'Form Asesmen & Scoring Teruji', 
+      badge: 'Scoring Rubric',
+      description: 'Instrumen rubrik penilaian objektif berbasis kompetensi teknis dan indikator evaluasi peran.'
     },
   ],
   'methodology-iq': [
