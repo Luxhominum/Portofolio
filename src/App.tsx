@@ -1,19 +1,14 @@
 import { useState } from 'react';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
-import { ProjectFilter } from './components/ProjectFilter';
-import { ProjectCard } from './components/ProjectCard';
-import { CaseStudyModal } from './components/CaseStudyModal';
+import { EditorialProjectCard } from './components/EditorialProjectCard';
 import { TechMatrix } from './components/TechMatrix';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
-import { PROJECTS } from './data/mockData';
-import type { Project, ProjectCategory } from './types';
+import { EDITORIAL_PROJECTS } from './data/projectsData';
 import confetti from 'canvas-confetti';
 
 export function App() {
-  const [activeCategory, setActiveCategory] = useState<ProjectCategory>('all');
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [copiedEmail, setCopiedEmail] = useState<boolean>(false);
 
   const handleCopyEmail = () => {
@@ -21,74 +16,48 @@ export function App() {
     setCopiedEmail(true);
     try {
       confetti({
-        particleCount: 40,
-        spread: 60,
+        particleCount: 35,
+        spread: 50,
         origin: { y: 0.1 }
       });
     } catch (e) {}
     setTimeout(() => setCopiedEmail(false), 3000);
   };
 
-  const filteredProjects = PROJECTS.filter(p => {
-    if (activeCategory === 'all') return true;
-    return p.category === activeCategory;
-  });
-
-  const categoryCounts: Record<ProjectCategory, number> = {
-    all: PROJECTS.length,
-    ecommerce: PROJECTS.filter(p => p.category === 'ecommerce').length,
-    enterprise: PROJECTS.filter(p => p.category === 'enterprise').length,
-    community: PROJECTS.filter(p => p.category === 'community').length,
-    decision: PROJECTS.filter(p => p.category === 'decision').length,
-  };
-
-  const handleOpenCaseStudyById = (projectId: string) => {
-    const proj = PROJECTS.find(p => p.id === projectId);
-    if (proj) setSelectedProject(proj);
-  };
-
   return (
-    <div className="min-h-screen bg-studio-50 text-slate-900 font-sans flex flex-col antialiased selection:bg-brand-100 selection:text-brand-900">
+    <div className="min-h-screen bg-slate-50 text-slate-900 font-sans flex flex-col antialiased selection:bg-blue-100 selection:text-blue-900">
       <Navbar onCopyEmail={handleCopyEmail} copied={copiedEmail} />
       
       <main className="flex-1">
-        <HeroSection 
-          onOpenCaseStudy={handleOpenCaseStudyById} 
-        />
+        <HeroSection />
 
-        {/* Featured Projects Grid Section */}
-        <section id="projects" className="py-16 md:py-24 border-b border-slate-200/60 bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
-              <div>
-                <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider font-mono">
-                  Production & Enterprise Showcase
-                </span>
-                <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mt-1">
-                  Koleksi 6 Proyek Perangkat Lunak Unggulan
-                </h2>
-                <p className="text-xs sm:text-sm text-slate-600 mt-1.5 max-w-xl">
-                  Setiap proyek dilengkapi antarmuka screenshot realistis, dokumentasi 4-Pilar komprehensif, dan simulator interaktif langsung.
-                </p>
-              </div>
-
-              <ProjectFilter
-                activeCategory={activeCategory}
-                onSelectCategory={setActiveCategory}
-                counts={categoryCounts}
-              />
+        {/* Featured Flagship Case Studies (Editorial Long-Form) */}
+        <section id="projects" className="py-16 sm:py-24 border-b border-slate-200/80 bg-slate-50">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div className="max-w-3xl mb-12 sm:mb-16">
+              <span className="text-xs font-mono font-bold text-slate-400 uppercase tracking-wider">
+                Production Case Studies
+              </span>
+              <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mt-1.5">
+                Studi Kasus Rekayasa Sistem Nyata
+              </h2>
+              <p className="text-sm sm:text-base text-slate-600 mt-2 leading-relaxed">
+                Setiap proyek di bawah ini mendokumentasikan tantangan bisnis riil, visual antarmuka produksi berdensitas tinggi, arsitektur pencegahan kegagalan, dan metrik hasil yang terukur.
+              </p>
             </div>
 
-            {/* Asymmetrical Bento Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredProjects.map(project => (
-                <ProjectCard
+            {/* Editorial Stack of Case Studies */}
+            <div className="space-y-12 sm:space-y-16">
+              {EDITORIAL_PROJECTS.map((project, idx) => (
+                <EditorialProjectCard
                   key={project.id}
                   project={project}
-                  onOpenCaseStudy={setSelectedProject}
+                  index={idx}
                 />
               ))}
             </div>
+
           </div>
         </section>
 
@@ -97,12 +66,6 @@ export function App() {
       </main>
 
       <Footer />
-
-      {/* 4-Pillar Deep Dive Modal */}
-      <CaseStudyModal
-        project={selectedProject}
-        onClose={() => setSelectedProject(null)}
-      />
     </div>
   );
 }
