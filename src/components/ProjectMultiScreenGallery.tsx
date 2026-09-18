@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   Maximize2, 
   X, 
@@ -177,6 +177,22 @@ export const ProjectMultiScreenGallery: React.FC<Props> = ({ projectId, uiTheme 
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
   const activeScreen = screens[activeScreenIndex];
 
+  // Keyboard navigation for lightbox
+  useEffect(() => {
+    if (!isLightboxOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowRight') {
+        setActiveScreenIndex((prev) => (prev + 1) % screens.length);
+      } else if (e.key === 'ArrowLeft') {
+        setActiveScreenIndex((prev) => (prev - 1 + screens.length) % screens.length);
+      } else if (e.key === 'Escape') {
+        setIsLightboxOpen(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isLightboxOpen, screens.length]);
+
   const getThemeColor = () => {
     switch (uiTheme) {
       case 'emerald': return 'border-emerald-600 text-emerald-800 bg-emerald-50';
@@ -223,7 +239,7 @@ export const ProjectMultiScreenGallery: React.FC<Props> = ({ projectId, uiTheme 
               </span>
               <button
                 onClick={() => setIsLightboxOpen(true)}
-                className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-md bg-white border border-slate-200 text-slate-700 text-[11px] font-medium hover:bg-slate-50 transition-colors shadow-xs"
+                className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-md bg-white border border-slate-200 text-slate-700 text-[11px] font-medium hover:bg-slate-50 transition-colors shadow-xs cursor-pointer"
                 title="Buka Layar Penuh"
               >
                 <Maximize2 className="w-3 h-3 text-slate-500" />
@@ -240,7 +256,7 @@ export const ProjectMultiScreenGallery: React.FC<Props> = ({ projectId, uiTheme 
                 <button
                   key={screen.id}
                   onClick={() => setActiveScreenIndex(idx)}
-                  className={`text-left p-2 rounded-lg border transition-all text-xs ${
+                  className={`text-left p-2 rounded-lg border transition-all duration-200 text-xs cursor-pointer ${
                     isActive 
                       ? `bg-white shadow-subtle font-bold text-slate-900 ${getThemeColor()} border-l-4` 
                       : 'bg-slate-50/70 border-slate-200/70 text-slate-600 hover:bg-white hover:text-slate-900'
@@ -254,21 +270,31 @@ export const ProjectMultiScreenGallery: React.FC<Props> = ({ projectId, uiTheme 
           </div>
         </div>
 
-        {/* Real Screenshot Viewport Frame */}
+        {/* Real Screenshot Viewport Frame (Fixed Aspect Ratio with Silky Smooth Cross-Fade) */}
         <div className="relative bg-slate-950 p-2 sm:p-4 group">
           <div 
             onClick={() => setIsLightboxOpen(true)}
-            className="relative rounded-lg overflow-hidden border border-slate-800 shadow-2xl cursor-zoom-in bg-slate-900 transition-all hover:ring-2 hover:ring-blue-500/50"
+            className="relative w-full aspect-[16/10] rounded-lg overflow-hidden border border-slate-800 shadow-2xl cursor-zoom-in bg-slate-900 transition-all hover:ring-2 hover:ring-blue-500/50"
           >
-            <img 
-              src={getImageUrl(activeScreen.id)} 
-              alt={`${activeScreen.title} - ${activeScreen.subtitle}`}
-              className="w-full h-auto object-cover max-h-[540px] block"
-              loading="lazy"
-            />
+            {/* Stacked Preloaded Screen Images with GPU-accelerated Cross-Fade */}
+            {screens.map((screen, idx) => {
+              const isCurrent = idx === activeScreenIndex;
+              return (
+                <img 
+                  key={screen.id}
+                  src={getImageUrl(screen.id)} 
+                  alt={`${screen.title} - ${screen.subtitle}`}
+                  className={`absolute inset-0 w-full h-full object-cover transition-all duration-400 ease-out will-change-transform ${
+                    isCurrent 
+                      ? 'opacity-100 scale-100 z-10 pointer-events-auto' 
+                      : 'opacity-0 scale-[1.01] z-0 pointer-events-none'
+                  }`}
+                />
+              );
+            })}
             
             {/* Overlay Hover Hint */}
-            <div className="absolute inset-0 bg-slate-950/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
+            <div className="absolute inset-0 bg-slate-950/20 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center pointer-events-none z-20">
               <span className="px-3.5 py-1.5 rounded-full bg-slate-900/90 text-white text-xs font-semibold backdrop-blur-md border border-white/20 shadow-xl flex items-center gap-1.5">
                 <Maximize2 className="w-3.5 h-3.5 text-blue-400" /> Klik untuk Memperbesar Resolusi Penuh
               </span>
@@ -278,35 +304,35 @@ export const ProjectMultiScreenGallery: React.FC<Props> = ({ projectId, uiTheme 
           {/* Prev / Next Navigation Floating Buttons */}
           <button
             onClick={(e) => { e.stopPropagation(); handlePrev(); }}
-            className="absolute left-4 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-slate-900/80 hover:bg-slate-900 text-white border border-slate-700 flex items-center justify-center shadow-lg transition-transform active:scale-95"
-            title="Layar Sebelumnya"
+            className="absolute left-4 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-slate-900/80 hover:bg-slate-900 text-white border border-slate-700 flex items-center justify-center shadow-lg transition-transform active:scale-90 cursor-pointer z-20"
+            title="Layar Sebelumnya (Panah Kiri)"
           >
             <ChevronLeft className="w-4 h-4" />
           </button>
 
           <button
             onClick={(e) => { e.stopPropagation(); handleNext(); }}
-            className="absolute right-4 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-slate-900/80 hover:bg-slate-900 text-white border border-slate-700 flex items-center justify-center shadow-lg transition-transform active:scale-95"
-            title="Layar Berikutnya"
+            className="absolute right-4 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-slate-900/80 hover:bg-slate-900 text-white border border-slate-700 flex items-center justify-center shadow-lg transition-transform active:scale-90 cursor-pointer z-20"
+            title="Layar Berikutnya (Panah Kanan)"
           >
             <ChevronRight className="w-4 h-4" />
           </button>
         </div>
 
-        {/* Screen Description Context Footer */}
+        {/* Screen Description Context Footer (Smooth Fade on Text) */}
         <div className="p-3 sm:p-4 bg-slate-50 border-t border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs">
-          <div>
+          <div key={activeScreen.id} className="animate-fadeIn">
             <span className="font-bold text-slate-900">{activeScreen.title}: </span>
             <span className="text-slate-600">{activeScreen.description}</span>
           </div>
-          <span className="px-2 py-0.5 rounded bg-white text-slate-700 font-mono text-[10px] font-semibold border border-slate-200 shrink-0 self-start sm:self-auto">
+          <span className="px-2 py-0.5 rounded bg-white text-slate-700 font-mono text-[10px] font-semibold border border-slate-200 shrink-0 self-start sm:self-auto shadow-2xs">
             {activeScreen.badge}
           </span>
         </div>
 
       </div>
 
-      {/* Fullscreen Lightbox Modal */}
+      {/* Fullscreen Lightbox Modal (with smooth stacked cross-fade) */}
       {isLightboxOpen && (
         <div 
           className="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md flex items-center justify-center p-4 sm:p-8 animate-fadeIn"
@@ -326,36 +352,46 @@ export const ProjectMultiScreenGallery: React.FC<Props> = ({ projectId, uiTheme 
               </div>
               <button 
                 onClick={() => setIsLightboxOpen(false)}
-                className="w-8 h-8 rounded-lg bg-slate-700/80 hover:bg-slate-700 text-white flex items-center justify-center transition-colors"
-                title="Tutup Modal"
+                className="w-8 h-8 rounded-lg bg-slate-700/80 hover:bg-slate-700 text-white flex items-center justify-center transition-colors cursor-pointer"
+                title="Tutup Modal (Esc)"
               >
                 <X className="w-4 h-4" />
               </button>
             </div>
 
-            {/* Modal Image Body */}
-            <div className="p-2 sm:p-4 overflow-auto flex-1 flex items-center justify-center bg-slate-950">
-              <img 
-                src={getImageUrl(activeScreen.id)} 
-                alt={activeScreen.title}
-                className="max-w-full max-h-[75vh] object-contain rounded-lg border border-slate-800"
-              />
+            {/* Modal Image Body with Stacked Cross-Fade */}
+            <div className="relative w-full aspect-[16/10] max-h-[75vh] flex-1 bg-slate-950 overflow-hidden">
+              {screens.map((screen, idx) => {
+                const isCurrent = idx === activeScreenIndex;
+                return (
+                  <img 
+                    key={screen.id}
+                    src={getImageUrl(screen.id)} 
+                    alt={screen.title}
+                    className={`absolute inset-0 w-full h-full object-contain transition-all duration-300 ease-out ${
+                      isCurrent 
+                        ? 'opacity-100 scale-100 z-10' 
+                        : 'opacity-0 scale-[1.01] z-0 pointer-events-none'
+                    }`}
+                  />
+                );
+              })}
             </div>
 
             {/* Modal Navigation Footer */}
             <div className="bg-slate-800 px-4 py-2.5 border-t border-slate-700 flex items-center justify-between text-xs text-slate-300">
               <button
                 onClick={handlePrev}
-                className="inline-flex items-center gap-1 px-3 py-1 rounded-lg bg-slate-700 hover:bg-slate-600 text-white font-medium transition-colors"
+                className="inline-flex items-center gap-1 px-3 py-1 rounded-lg bg-slate-700 hover:bg-slate-600 text-white font-medium transition-colors cursor-pointer"
               >
                 <ChevronLeft className="w-4 h-4" /> Layar Sebelumnya
               </button>
               <span className="font-mono text-[11px] text-slate-400">
-                {activeScreenIndex + 1} dari {screens.length} Layar
+                {activeScreenIndex + 1} dari {screens.length} Layar (Gunakan tombol &larr; &rarr;)
               </span>
               <button
                 onClick={handleNext}
-                className="inline-flex items-center gap-1 px-3 py-1 rounded-lg bg-slate-700 hover:bg-slate-600 text-white font-medium transition-colors"
+                className="inline-flex items-center gap-1 px-3 py-1 rounded-lg bg-slate-700 hover:bg-slate-600 text-white font-medium transition-colors cursor-pointer"
               >
                 Layar Berikutnya <ChevronRight className="w-4 h-4" />
               </button>
