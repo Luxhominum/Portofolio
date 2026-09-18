@@ -1,4 +1,61 @@
-import type { Project } from '../types';
+﻿# -*- coding: utf-8 -*-
+import os
+
+# 1. src/types/index.ts
+types_code = """export type ProjectCategory = 'all' | 'ecommerce' | 'enterprise' | 'community' | 'decision';
+
+export interface ProjectMetric {
+  label: string;
+  value: string;
+  desc: string;
+}
+
+export interface ProjectFeature {
+  title: string;
+  description: string;
+  badge?: string;
+}
+
+export interface FourPillars {
+  alasan: {
+    problem: string;
+    bottlenecks: string[];
+    objective: string;
+  };
+  caraKerja: {
+    architecture: string;
+    workflowSteps: string[];
+    technicalSpecifications: string[];
+  };
+  output: {
+    deliverables: string[];
+    coreFeatures: ProjectFeature[];
+  };
+  result: {
+    metrics: ProjectMetric[];
+    impactSummary: string;
+  };
+}
+
+export interface Project {
+  id: string;
+  title: string;
+  subtitle: string;
+  tagline: string;
+  category: ProjectCategory;
+  categoryLabel: string;
+  badge?: string;
+  uiType: 'omnipulse' | 'nexus' | 'talent' | 'liturgy' | 'radar' | 'automation';
+  stack: string[];
+  keyHighlights: string[];
+  fourPillars: FourPillars;
+}
+"""
+with open("src/types/index.ts", "w", encoding="utf-8") as f:
+    f.write(types_code)
+
+# 2. src/data/mockData.ts
+data_code = """import type { Project } from '../types';
 
 export const PROJECTS: Project[] = [
   {
@@ -382,3 +439,8 @@ export const PROJECTS: Project[] = [
     }
   }
 ];
+"""
+with open("src/data/mockData.ts", "w", encoding="utf-8") as f:
+    f.write(data_code)
+
+print("Types and MockData rebuilt cleanly.")
