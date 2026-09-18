@@ -1,127 +1,173 @@
-import React from 'react';
-import { ArrowRight, ShieldCheck, Activity, Layers, Sparkles } from 'lucide-react';
+import React, { useState } from 'react';
+import { 
+  ArrowUpRight, 
+  Activity, 
+  Layers, 
+  Users, 
+  Sliders, 
+  Sparkles,
+  ExternalLink
+} from 'lucide-react';
+import { OmniPulseSandbox } from './sandboxes/OmniPulseSandbox';
+import { NexusPortalSandbox } from './sandboxes/NexusPortalSandbox';
+import { TalentPulseSandbox } from './sandboxes/TalentPulseSandbox';
+import { MethodologyRadarSandbox } from './sandboxes/MethodologyRadarSandbox';
 
 interface HeroSectionProps {
-  onOpenOmniPulse: () => void;
+  onOpenCaseStudy: (projectId: string) => void;
 }
 
-export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenOmniPulse }) => {
+export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenCaseStudy }) => {
+  const [activeTab, setActiveTab] = useState<'omnipulse' | 'nexus' | 'talent' | 'radar'>('omnipulse');
+
   return (
-    <section className="relative pt-10 pb-16 md:pt-16 md:pb-24 overflow-hidden border-b border-slate-200/60">
+    <section className="relative pt-8 pb-20 md:pt-14 md:pb-28 overflow-hidden bg-gradient-to-b from-slate-100/60 via-studio-50 to-white border-b border-slate-200/70">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-          <div className="lg:col-span-7 space-y-6">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 border border-slate-200/80 text-slate-700 text-xs font-medium">
-              <Sparkles className="w-3.5 h-3.5 text-brand-600" />
-              <span>Studio Light UI - Engineering Portfolio 2026</span>
-            </div>
-
-            <h1 className="text-3xl sm:text-5xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-[1.15]">
-              Engineering <span className="text-slate-900 underline decoration-brand-500/40 underline-offset-4">Resilient Enterprise Platforms</span> & High-Craft Web Applications.
-            </h1>
-
-            <p className="text-sm sm:text-base text-slate-600 leading-relaxed max-w-2xl">
-              Fokus membangun sistem dashboard transaksi bervolume tinggi, portal sentralisasi tata kelola perusahaan, dan aplikasi cloud tanpa bentrok jadwal dengan standar arsitektur teruji, nol kesalahan manual, dan pengalaman interaksi pengguna yang presisi.
-            </p>
-
-            <div className="flex flex-wrap items-center gap-3 pt-2">
-              <a
-                href="#projects"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-slate-900 text-white hover:bg-slate-800 transition-all shadow-elevated active:scale-[0.98]"
-              >
-                <span>Jelajahi 6 Proyek Unggulan</span>
-                <ArrowRight className="w-4 h-4" />
-              </a>
-
-              <button
-                onClick={onOpenOmniPulse}
-                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-white text-slate-800 border border-slate-200/90 hover:bg-slate-50 transition-all shadow-subtle active:scale-[0.98]"
-              >
-                <Activity className="w-4 h-4 text-brand-600" />
-                <span>Live Transaction Simulator</span>
-              </button>
-            </div>
-
-            <div className="grid grid-cols-3 gap-4 pt-4 border-t border-slate-200/70 max-w-lg">
-              <div>
-                <div className="text-xl sm:text-2xl font-bold font-mono text-slate-900">99.98%</div>
-                <div className="text-[11px] text-slate-500 font-medium">SLA Compliance</div>
-              </div>
-              <div>
-                <div className="text-xl sm:text-2xl font-bold font-mono text-slate-900">0</div>
-                <div className="text-[11px] text-slate-500 font-medium">Scheduling Conflicts</div>
-              </div>
-              <div>
-                <div className="text-xl sm:text-2xl font-bold font-mono text-slate-900">90%</div>
-                <div className="text-[11px] text-slate-500 font-medium">Manual Work Saved</div>
-              </div>
-            </div>
+        
+        {/* Top Header & Value Proposition */}
+        <div className="max-w-3xl mx-auto text-center space-y-4 mb-10">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white border border-slate-200/80 text-slate-700 text-xs font-semibold shadow-subtle">
+            <Sparkles className="w-3.5 h-3.5 text-brand-600" />
+            <span>Interactive Engineering Portfolio & System Showcases</span>
           </div>
 
-          <div className="lg:col-span-5">
-            <div className="bg-white border border-slate-200/90 rounded-2xl p-5 shadow-elevated relative overflow-hidden">
-              <div className="flex items-center justify-between pb-3 border-b border-slate-100">
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.12]">
+            Engineering Resilient <br className="hidden sm:inline" />
+            <span className="bg-gradient-to-r from-slate-900 via-slate-800 to-brand-600 bg-clip-text text-transparent">
+              Enterprise Platforms & High-Craft UIs
+            </span>
+          </h1>
+
+          <p className="text-xs sm:text-base text-slate-600 leading-relaxed max-w-2xl mx-auto font-normal">
+            Spesialisasi dalam arsitektur dashboard transaksi berkinerja tinggi, portal kendali sistem terpusat, dan visualisasi data matematis dengan standar keandalan 99.99%.
+          </p>
+
+          {/* Nested Button-in-Button CTA */}
+          <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
+            <a
+              href="#projects"
+              className="group inline-flex items-center gap-3 pl-6 pr-2 py-2 rounded-full text-xs sm:text-sm font-semibold bg-slate-900 text-white hover:bg-slate-800 transition-all shadow-elevated active:scale-[0.98]"
+            >
+              <span>Jelajahi 6 Studi Kasus Lengkap</span>
+              <span className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">
+                <ArrowUpRight className="w-4 h-4 text-white" />
+              </span>
+            </a>
+
+            <a
+              href="#architecture"
+              className="inline-flex items-center gap-2 px-5 py-3 rounded-full text-xs sm:text-sm font-semibold bg-white text-slate-700 border border-slate-200/90 hover:bg-slate-50 transition-all shadow-subtle active:scale-[0.98]"
+            >
+              <Layers className="w-4 h-4 text-slate-500" />
+              <span>Matriks Teknologi & Kode</span>
+            </a>
+          </div>
+        </div>
+
+        {/* DOUBLE-BEZEL INTERACTIVE HERO SHOWCASE FRAME */}
+        <div className="relative mt-6 max-w-5xl mx-auto">
+          {/* Ambient Glow Aura */}
+          <div className="absolute -inset-1.5 bg-gradient-to-r from-slate-200 via-brand-100 to-slate-200 rounded-[2.5rem] blur-xl opacity-60 pointer-events-none"></div>
+
+          {/* Outer Shell (Double-Bezel) */}
+          <div className="relative p-2 md:p-3 rounded-[2.25rem] bg-slate-100/90 ring-1 ring-slate-200/80 shadow-2xl">
+            {/* Inner Core */}
+            <div className="bg-white rounded-[calc(2.25rem-0.75rem)] border border-slate-200/90 overflow-hidden shadow-subtle">
+              
+              {/* Hardware Mockup Top Bar (Browser/OS Window Frame) */}
+              <div className="bg-slate-50/95 px-4 py-3 border-b border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                {/* Window Traffic Lights & URL Pill */}
+                <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-1.5">
+                    <span className="w-3 h-3 rounded-full bg-rose-400 border border-rose-500/30"></span>
+                    <span className="w-3 h-3 rounded-full bg-amber-400 border border-amber-500/30"></span>
+                    <span className="w-3 h-3 rounded-full bg-emerald-400 border border-emerald-500/30"></span>
+                  </div>
+                  <div className="hidden sm:flex items-center gap-1.5 px-3 py-1 bg-white border border-slate-200/80 rounded-md text-[11px] font-mono text-slate-600 shadow-subtle">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                    <span>preview.engineering-studio.internal/{activeTab}</span>
+                  </div>
+                </div>
+
+                {/* Interactive Project Switcher Tabs */}
+                <div className="flex items-center gap-1 bg-slate-200/60 p-1 rounded-xl overflow-x-auto">
+                  <button
+                    onClick={() => setActiveTab('omnipulse')}
+                    className={`px-3 py-1 text-xs font-semibold rounded-lg transition-all flex items-center gap-1.5 whitespace-nowrap ${
+                      activeTab === 'omnipulse'
+                        ? 'bg-white text-slate-900 shadow-sm'
+                        : 'text-slate-600 hover:text-slate-900'
+                    }`}
+                  >
+                    <Activity className="w-3.5 h-3.5 text-brand-600" />
+                    <span>OmniPulse OS</span>
+                  </button>
+
+                  <button
+                    onClick={() => setActiveTab('nexus')}
+                    className={`px-3 py-1 text-xs font-semibold rounded-lg transition-all flex items-center gap-1.5 whitespace-nowrap ${
+                      activeTab === 'nexus'
+                        ? 'bg-white text-slate-900 shadow-sm'
+                        : 'text-slate-600 hover:text-slate-900'
+                    }`}
+                  >
+                    <Layers className="w-3.5 h-3.5 text-indigo-600" />
+                    <span>Nexus Portal</span>
+                  </button>
+
+                  <button
+                    onClick={() => setActiveTab('talent')}
+                    className={`px-3 py-1 text-xs font-semibold rounded-lg transition-all flex items-center gap-1.5 whitespace-nowrap ${
+                      activeTab === 'talent'
+                        ? 'bg-white text-slate-900 shadow-sm'
+                        : 'text-slate-600 hover:text-slate-900'
+                    }`}
+                  >
+                    <Users className="w-3.5 h-3.5 text-emerald-600" />
+                    <span>TalentPulse</span>
+                  </button>
+
+                  <button
+                    onClick={() => setActiveTab('radar')}
+                    className={`px-3 py-1 text-xs font-semibold rounded-lg transition-all flex items-center gap-1.5 whitespace-nowrap ${
+                      activeTab === 'radar'
+                        ? 'bg-white text-slate-900 shadow-sm'
+                        : 'text-slate-600 hover:text-slate-900'
+                    }`}
+                  >
+                    <Sliders className="w-3.5 h-3.5 text-amber-600" />
+                    <span>MethodologyIQ</span>
+                  </button>
+                </div>
+              </div>
+
+              {/* Interactive Screen Viewport */}
+              <div className="p-4 sm:p-6 bg-slate-50/40">
+                {activeTab === 'omnipulse' && <OmniPulseSandbox />}
+                {activeTab === 'nexus' && <NexusPortalSandbox />}
+                {activeTab === 'talent' && <TalentPulseSandbox />}
+                {activeTab === 'radar' && <MethodologyRadarSandbox />}
+              </div>
+
+              {/* Hardware Mockup Footer Bar */}
+              <div className="px-5 py-3 bg-white border-t border-slate-200/80 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs text-slate-500">
                 <div className="flex items-center gap-2">
-                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                  <span className="text-xs font-bold text-slate-800 tracking-tight">Active Engine Telemetry</span>
+                  <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
+                  <span className="font-medium text-slate-700">Live Client-Side State Engine</span>
+                  <span className="text-slate-400 font-mono">| 100% Synthetic Privacy Data</span>
                 </div>
-                <span className="text-[11px] font-mono text-slate-500 bg-slate-100 px-2 py-0.5 rounded">60 FPS Fluid</span>
-              </div>
-
-              <div className="space-y-3 mt-4">
-                <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/60 flex items-center justify-between">
-                  <div className="flex items-center gap-2.5">
-                    <div className="p-2 rounded-lg bg-emerald-100 text-emerald-700">
-                      <ShieldCheck className="w-4 h-4" />
-                    </div>
-                    <div>
-                      <div className="text-xs font-semibold text-slate-900">Zero-Conflict Engine</div>
-                      <div className="text-[11px] text-slate-500">Live on Cloud Firestore</div>
-                    </div>
-                  </div>
-                  <span className="text-xs font-mono font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200/60">
-                    Active
-                  </span>
-                </div>
-
-                <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/60 flex items-center justify-between">
-                  <div className="flex items-center gap-2.5">
-                    <div className="p-2 rounded-lg bg-brand-100 text-brand-700">
-                      <Activity className="w-4 h-4" />
-                    </div>
-                    <div>
-                      <div className="text-xs font-semibold text-slate-900">Failover Buffer Queue</div>
-                      <div className="text-[11px] text-slate-500">Web Worker Background Sync</div>
-                    </div>
-                  </div>
-                  <span className="text-xs font-mono font-bold text-brand-700 bg-brand-50 px-2 py-0.5 rounded border border-brand-200/60">
-                    Standby
-                  </span>
-                </div>
-
-                <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/60 flex items-center justify-between">
-                  <div className="flex items-center gap-2.5">
-                    <div className="p-2 rounded-lg bg-indigo-100 text-indigo-700">
-                      <Layers className="w-4 h-4" />
-                    </div>
-                    <div>
-                      <div className="text-xs font-semibold text-slate-900">RBAC Governance Hub</div>
-                      <div className="text-[11px] text-slate-500">Google Workspace Add-ons</div>
-                    </div>
-                  </div>
-                  <span className="text-xs font-mono font-bold text-indigo-700 bg-indigo-50 px-2 py-0.5 rounded border border-indigo-200/60">
-                    100% Secure
-                  </span>
-                </div>
-              </div>
-
-              <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500">
-                <span>Synthetic Validation Datasets</span>
-                <span className="font-mono text-slate-700 font-medium">Privacy Guaranteed</span>
+                <button
+                  onClick={() => onOpenCaseStudy(activeTab === 'omnipulse' ? 'omnipulse' : activeTab === 'nexus' ? 'nexus-portal' : activeTab === 'talent' ? 'talentpulse' : 'methodologyiq')}
+                  className="font-mono text-[11px] text-brand-600 hover:underline inline-flex items-center gap-1 font-semibold"
+                >
+                  <span>Buka Dokumentasi 4-Pilar untuk Modul Ini</span>
+                  <ExternalLink className="w-3 h-3" />
+                </button>
               </div>
             </div>
           </div>
         </div>
+
       </div>
     </section>
   );

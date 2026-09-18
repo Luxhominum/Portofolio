@@ -42,32 +42,33 @@ export function App() {
     decision: PROJECTS.filter(p => p.category === 'decision').length,
   };
 
-  const handleOpenOmniPulse = () => {
-    const omni = PROJECTS.find(p => p.id === 'omnipulse');
-    if (omni) setSelectedProject(omni);
+  const handleOpenCaseStudyById = (projectId: string) => {
+    const proj = PROJECTS.find(p => p.id === projectId);
+    if (proj) setSelectedProject(proj);
   };
 
   return (
-    <div className="min-h-screen bg-studio-50 text-slate-900 font-sans flex flex-col">
+    <div className="min-h-screen bg-studio-50 text-slate-900 font-sans flex flex-col antialiased selection:bg-brand-100 selection:text-brand-900">
       <Navbar onCopyEmail={handleCopyEmail} copied={copiedEmail} />
       
       <main className="flex-1">
         <HeroSection 
-          onOpenOmniPulse={handleOpenOmniPulse} 
+          onOpenCaseStudy={handleOpenCaseStudyById} 
         />
 
-        <section id="projects" className="py-16 md:py-20 border-b border-slate-200/60 bg-white">
+        {/* Featured Projects Grid Section */}
+        <section id="projects" className="py-16 md:py-24 border-b border-slate-200/60 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
+            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
               <div>
                 <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider font-mono">
-                  Curated Showcase
+                  Production & Enterprise Showcase
                 </span>
-                <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight mt-1">
-                  Koleksi 6 Proyek Perangkat Lunak Teruji
+                <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mt-1">
+                  Koleksi 6 Proyek Perangkat Lunak Unggulan
                 </h2>
-                <p className="text-xs sm:text-sm text-slate-600 mt-1 max-w-xl">
-                  Setiap proyek dilengkapi dokumentasi studi kasus 4-Pilar (Alasan Mengapa Dibuat, Cara Kerja, Output, Result) dan simulator interaktif.
+                <p className="text-xs sm:text-sm text-slate-600 mt-1.5 max-w-xl">
+                  Setiap proyek dilengkapi antarmuka screenshot realistis, dokumentasi 4-Pilar komprehensif, dan simulator interaktif langsung.
                 </p>
               </div>
 
@@ -78,6 +79,7 @@ export function App() {
               />
             </div>
 
+            {/* Asymmetrical Bento Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {filteredProjects.map(project => (
                 <ProjectCard
@@ -96,6 +98,7 @@ export function App() {
 
       <Footer />
 
+      {/* 4-Pillar Deep Dive Modal */}
       <CaseStudyModal
         project={selectedProject}
         onClose={() => setSelectedProject(null)}
