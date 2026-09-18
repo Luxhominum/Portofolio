@@ -2,6 +2,7 @@ export interface EditorialProject {
   id: string;
   title: string;
   category: string;
+  roleBadge: string;
   tagline: string;
   problem: string;
   solution: string;
@@ -16,105 +17,109 @@ export const EDITORIAL_PROJECTS: EditorialProject[] = [
   {
     id: 'community-scheduling',
     title: 'Community Resource Planning & Scheduling Platform',
-    category: 'Full-Stack Cloud Application',
-    tagline: 'Sistem penjadwalan cloud berskala besar dengan algoritma validasi zero-conflict otomatis dan pemerataan rotasi tugas bagi 35 kelompok komunitas.',
-    problem: 'Pengelolaan jadwal penugasan ratusan relawan yang sebelumnya dilakukan manual lewat spreadsheet sering berujung pada jadwal bentrok ganda (double-booking), penugasan berturut-turut yang melelahkan petugas, serta koordinasi bulanan yang memakan waktu berhari-hari.',
-    solution: 'Membangun platform cloud terpusat dengan algoritma validasi instan 3 lapis yang secara matematis mencegah jadwal bentrok, menyeimbangkan frekuensi giliran tugas secara proporsional, serta mengotomasi pembuatan warta resmi dan format pesan siaran komunikasi.',
+    category: 'Community & Volunteer Management System',
+    roleBadge: 'Full-Stack Developer & Community Initiative',
+    tagline: 'Sistem penjadwalan cloud terpusat dengan algoritma validasi zero-conflict otomatis dan pemerataan rotasi tugas bagi 35 kelompok komunitas.',
+    problem: 'Pengelolaan jadwal penugasan ratusan relawan dan petugas liturgi yang sebelumnya dilakukan manual lewat lembar spreadsheet sering berujung pada jadwal bentrok ganda (double-booking), penugasan berturut-turut yang melelahkan petugas, serta koordinasi bulanan yang memakan waktu berhari-hari.',
+    solution: 'Membangun platform cloud mandiri dengan algoritma validasi instan yang secara matematis mengeliminasi jadwal bentrok, menyeimbangkan frekuensi giliran tugas secara proporsional antar 35 wilayah, serta mengotomasi pembuatan warta resmi dan format pesan siaran komunikasi WhatsApp 1-klik.',
     architectureDetails: [
-      '3-Tier Zero-Conflict Validator: Memeriksa bentrok antar sesi, bentrok tim koor vs penugasan perorangan, dan jeda istirahat wajib secara real-time.',
-      'Fair-Share Rotation Matrix: Algoritma penyeimbang beban pelayanan yang memantau riwayat penugasan 35 komunitas wilayah sepanjang kuartal.',
-      '2-Tier Role-Based Security: Pembagian peran Admin dan Penjadwal dengan mekanisme penguncian jadwal resmi (Official Finalization Lock).',
-      'Multi-Format Publishing Engine: Mengonversi data jadwal digital menjadi format lembar cetak warta A4 dan format teks WhatsApp 1-klik.'
+      'Zero-Conflict Validation Matrix: Memeriksa bentrok antar sesi misa, bentrok tim koor vs penugasan perorangan, dan jeda istirahat wajib secara real-time.',
+      'Fair-Share Rotation Balancer: Algoritma penyeimbang beban pelayanan yang memantau riwayat penugasan 35 komunitas wilayah sepanjang tahun.',
+      'Role-Based Finalization Lock: Pembagian peran Admin dan Penjadwal dengan mekanisme penguncian jadwal resmi (Official Finalization Lock) untuk mencegah revisi tak sengaja.',
+      'Multi-Format Export Engine: Mengonversi data jadwal digital menjadi format lembar cetak warta fisik dan format teks WhatsApp terstruktur.'
     ],
     keyFeatures: [
       { title: 'Interactive Calendar Slot Matrix', description: 'Antarmuka kalender modular dengan auto-suggest petugas yang bebas konflik dan siap ditugaskan.' },
       { title: 'Workload Balance Analytics', description: 'Visualisasi grafik proporsi beban pelayanan antar wilayah untuk memastikan transparansi dan keadilan penugasan.' },
-      { title: 'Official Revision Locking', description: 'Mencegah perubahan tak sengaja pada jadwal resmi yang telah disahkan melalui mode read-only.' }
+      { title: '1-Click Broadcast Generator', description: 'Otomasi pembentukan teks pesan pengumuman resmi ke koordinator wilayah dalam hitungan detik.' }
     ],
     impactMetrics: [
       { value: '0 Kasus', label: 'Bentrok Jadwal', description: 'Eliminasi 100% penugasan ganda sejak implementasi sistem' },
-      { value: '100%', label: 'Pemerataan Beban', description: 'Distribusi tugas antar 35 komunitas terdata objektif' },
-      { value: '-80%', label: 'Waktu Koordinasi', description: 'Penyusunan jadwal bulanan selesai dalam 1-2 jam' }
+      { value: '35 Wilayah', label: 'Terdistribusi Rata', description: 'Rotasi tugas terjadwal objektif dan transparan' },
+      { value: '<2 Jam', label: 'Penyusunan Jadwal', description: 'Waktu koordinasi bulanan berkurang dari berhari-hari' }
     ],
     techStack: ['React 19', 'TypeScript', 'Tailwind CSS', 'Cloud Firestore', 'Cloud Functions', 'RBAC Security'],
     uiTheme: 'emerald'
   },
   {
-    id: 'marketplace-ops',
-    title: 'Marketplace Transaction & Continuity Operations OS',
-    category: 'E-Commerce & High-Throughput Systems',
-    tagline: 'Platform sentralisasi data transaksi multi-channel dengan buffer failover offline-resilient dan pemantau kepatuhan batas waktu pengiriman kurir (SLA).',
-    problem: 'Pada operasional penjualan multi-channel (Shopee, Tokopedia, TikTok Shop, Lazada), lonjakan pesanan saat kampanye kilat kerap memicu API rate-limiting, webhook gagal, dan risiko pesanan terlewat (unfulfilled) yang berujung pada denda penalti pembatalan otomatis.',
-    solution: 'Membangun arsitektur penanganan transaksi real-time dengan buffer antrean lokal (IndexedDB) dan Web Workers background sync yang menjamin data pesanan tidak pernah hilang, disertai watchdog batas waktu kurir yang proaktif.',
+    id: 'marketplace-sales-intelligence',
+    title: 'Marketplace Sales Intelligence & Production Planning Platform',
+    category: 'Enterprise Data Analytics & Forecasting',
+    roleBadge: 'Internal Systems & Business Intelligence',
+    tagline: 'Platform analitik dan agregasi data transaksi penjualan multi-marketplace lintas tahun untuk dasar pengambilan keputusan, proyeksi kuota produksi, dan strategi marketing kantor.',
+    problem: 'Data transaksi penjualan dari berbagai kanal marketplace (Shopee, Tokopedia, TikTok Shop, dll) tersimpan terpisah-pisah dalam format ekspor mentah yang berbeda. Manajemen kesulitan membandingkan tren performa antar tahun (YoY), memperkirakan kebutuhan bahan baku produksi manufaktur, dan mengevaluasi efektivitas kampanye marketing secara holistik.',
+    solution: 'Membangun platform agregasi data transaksi sentral di kantor yang menormalisasi seluruh file data penjualan marketplace, menyajikan dashboard visual tren pertumbuhan lintas tahun, dan menghasilkan proyeksi kebutuhan produksi berdasarkan volume penjualan riil per kategori produk.',
     architectureDetails: [
-      'Multi-Channel Ingestion & Normalisasi: Mengonversi skema payload pesanan dari berbagai marketplace ke dalam satu format standar terpadu.',
-      'Offline-Resilient Failover Queue: Mengamankan event transaksi di buffer lokal terenkripsi saat koneksi API terganggu dan melakukan auto-retry dengan exponential backoff.',
-      'Courier SLA Watchdog: Menghitung mundur sisa batas waktu pengiriman (Instant, Same-Day, Regular) dan menaikkan prioritas pesanan yang mendekati batas penyerahan paket.',
-      'Financial Discrepancy Matrix: Pencocokan otomatis antara total penjualan bruto (GMV), potongan komisi platform, dan pencairan dana bersih di bank.'
+      'Multi-Channel Ingestion & Normalizer: Mengolah dan menyeragamkan skema data transaksi dari berbagai format ekspor marketplace ke dalam format analitik standar.',
+      'Year-over-Year (YoY) Growth Engine: Algoritma komparasi tren volume penjualan, nilai GMV, dan performa per kuartal/tahun secara otomatis.',
+      'Production Demand Forecasting: Model kalkulasi estimasi kebutuhan kapasitas produksi dan stok gudang berdasarkan historical run-rate transaksi.',
+      'Marketing Campaign Impact Matrix: Evaluasi performa produk sebelum, saat, dan sesudah kampanye promosi untuk mengoptimalkan alokasi budget marketing.'
     ],
     keyFeatures: [
-      { title: 'Live Normalized Stream Grid', description: 'Tabel transaksi berdensitas tinggi dengan pembaruan status real-time tanpa refresh halaman.' },
-      { title: 'Proactive Courier Cutoff Alert', description: 'Peringatan visual saat pesanan mendekati batas penjemputan kurir untuk mencegah sanksi keterlambatan.' },
-      { title: 'Self-Healing Sync Buffer', description: 'Mekanisme sinkronisasi otomatis yang menyalurkan kembali antrean pesanan saat gateway online kembali.' }
+      { title: 'Cross-Year Comparative Dashboard', description: 'Visualisasi grafik interaktif tren penjualan tahunan untuk memantau pertumbuhan bisnis dan seasonality pasar.' },
+      { title: 'Production Volume Estimator', description: 'Kalkulator kebutuhan suplai produksi pabrik/gudang berdasarkan pola repeat order dan volume item terjual.' },
+      { title: 'Product SKU Performance Grid', description: 'Tabel performa item terlaris dengan margin kontribusi dan tingkat perputaran barang (inventory turnover).' }
     ],
     impactMetrics: [
-      { value: '99.98%', label: 'Kepatuhan SLA', description: 'Pengiriman paket tepat waktu tanpa denda keterlambatan' },
-      { value: '0.00%', label: 'Pesanan Terlewat', description: 'Nol transaksi hilang berkat antrean failover lokal' },
-      { value: '+65%', label: 'Efisiensi Audit', description: 'Pencocokan dana harian dari 4 jam menjadi <45 menit' }
+      { value: 'Multi-Channel', label: 'Data Terpadu', description: 'Shopee, Tokopedia, TikTok Shop teragregasi dalam 1 sistem' },
+      { value: 'YoY Trends', label: 'Analisis Akurat', description: 'Pemantauan performa bisnis tahunan berbasis data faktual' },
+      { value: 'Akurasi Stok', label: 'Perencanaan Produksi', description: 'Meminimalisir overproduction & out-of-stock gudang' }
     ],
-    techStack: ['React 19', 'TypeScript', 'Tailwind CSS', 'Web Workers', 'IndexedDB', 'Client-Side State Engine'],
+    techStack: ['React 19', 'TypeScript', 'Tailwind CSS', 'Chart.js Data Engine', 'Client-side Ingestion Parser', 'State Analytics'],
     uiTheme: 'blue'
   },
   {
-    id: 'enterprise-nexus',
-    title: 'Enterprise Nexus — Spreadsheet & Tooling Governance Portal',
-    category: 'Enterprise Internal Platform',
-    tagline: 'Portal sentral untuk tata kelola puluhan Google Sheets operasional, pemantauan kesehatan skrip automasi, dan proteksi rumus master perusahaan.',
-    problem: 'Di lingkungan kerja yang mengandalkan puluhan Google Sheets antar departemen, sering terjadi kekacauan tautan kerja, skrip automasi yang mati mendadak karena kehabisan kuota Google API, serta rumus formula master tertimpa manual oleh staf.',
-    solution: 'Membangun satu portal kendali terpadu (single-pane-of-glass) yang mengindeks seluruh lembar kerja perusahaan, memantau penggunaan kuota API Google secara real-time, dan membatasi akses melalui routing RBAC yang aman.',
+    id: 'enterprise-hr-governance',
+    title: 'Enterprise HR & Operations Governance Portal (Nexus & Talent Pool)',
+    category: 'Internal Enterprise Portal & HR Tech',
+    roleBadge: 'HR & Internal Systems Innovator',
+    tagline: 'Portal sentral untuk tata kelola spreadsheet perusahaan—terutama pengawasan file penilaian kinerja karyawan—serta modul screening Talent Pool rekrutmen end-to-end.',
+    problem: 'Di lingkungan kantor, puluhan Google Sheets operasional dan lembar Penilaian Kinerja Karyawan tersebar tanpa katalogisasi yang jelas, memicu risiko rumus master terhapus oleh staf, link file hilang, dan proses screening berkas kandidat pelamar yang tidak terstruktur.',
+    solution: 'Membangun portal kendali internal satu pintu (single-pane-of-glass) untuk memetakan dan memproteksi seluruh spreadsheet penilaian kinerja aktif, mengawasi kesehatan otomatisasi, serta mengintegrasikan modul Talent Pool untuk screening dan tahapan rekrutmen kandidat secara terpusat.',
     architectureDetails: [
-      'Central Spreadsheet Indexer: Memetakan ID sheet, penanggung jawab departemen, dan tingkat sensitivitas data ke database sentral.',
-      'Script Quota Health Inspector: Memantau metrik konsumsi kuota harian Google Apps Script (Trigger, URLFetch, Mail) sebelum terjadi kegagalan massal.',
-      'Dynamic Destination Selector: Mengarahkan karyawan ke lembar kerja khusus divisinya secara terproteksi tanpa membuka akses ke cell master.',
-      'Formula Integrity Shield: Penguncian otomatis formula vital dalam mode read-only berbasis otorisasi token pengguna.'
+      'Performance Appraisal Sheet Registry: Mengindeks dan memonitor seluruh Google Sheets penilaian kinerja yang sedang aktif dipakai antar departemen.',
+      'Master Formula & Permission Shield: Penguncian integritas formula vital dan pengaturan hak akses divisi untuk mencegah kerusakan data manual.',
+      'End-to-End Talent Pool Pipeline: Modul tracking kandidat terpadu mulai dari screening CV, scoring penilaian tes, hingga tahapan offering.',
+      'Central Operations Navigator: Direktori navigasi cepat ke seluruh program dan alat bantu kerja internal kantor dalam satu dashboard terverifikasi.'
     ],
     keyFeatures: [
-      { title: 'Single-Pane-of-Glass Registry', description: 'Katalog terpadu 24+ spreadsheet operasional lengkap dengan status izin dan penanggung jawab.' },
-      { title: 'Real-time API Quota Gauges', description: 'Panel visualisasi persentase kuota eksekusi Google Apps Script untuk mencegah downtime operasional.' },
-      { title: 'Department Access Switcher', description: 'Navigasi cepat antar modul divisi (Logistik, Finance, Warehouse, HR) dengan kontrol hak akses ketat.' }
+      { title: 'Active Performance Sheet Registry', description: 'Katalog status seluruh lembar kerja evaluasi staf lengkap dengan penanggung jawab divisi dan proteksi formula.' },
+      { title: 'Talent Pool Screening Board', description: 'Papan manajemen pelamar interaktif dengan status tahapan rekrutmen, catatan wawancara, dan skor kecocokan profil.' },
+      { title: 'Internal Tooling Directory', description: 'Satu pintu akses untuk seluruh tautan kerja resmi kantor guna mengeliminasi kebingungan link antar karyawan.' }
     ],
     impactMetrics: [
-      { value: '95%', label: 'Insiden Rumus Rusak', description: 'Penurunan signifikan insiden formula master tertimpa manual' },
-      { value: '100%', label: 'Sentralisasi Aset', description: 'Seluruh lembar kerja terdaftar dalam 1 portal resmi terpadu' },
-      { value: '99.9%', label: 'Uptime Automasi', description: 'Pencegahan script failure melalui peringatan dini kuota' }
+      { value: '100%', label: 'Sentralisasi Aset', description: 'Seluruh spreadsheet penilaian kinerja terdata dalam 1 portal' },
+      { value: 'Zero Data Loss', label: 'Proteksi Formula', description: 'Mencegah insiden penimpaan rumus master secara manual' },
+      { value: 'End-to-End', label: 'Talent Pipeline', description: 'Screening pelamar lebih cepat, terdokumentasi rapi' }
     ],
     techStack: ['React 19', 'TypeScript', 'Tailwind CSS', 'Google Apps Script API', 'OAuth 2.0', 'RBAC Architecture'],
     uiTheme: 'indigo'
   },
   {
     id: 'methodology-iq',
-    title: 'MethodologyIQ — Software Decision Support System',
-    category: 'Decision Intelligence & Systems Research',
-    tagline: 'Instrumen evaluasi keputusan metodologi rekayasa perangkat lunak berbasis riset empiris akademis dengan proyeksi radar multi-dimensi.',
-    problem: 'Banyak pimpinan engineering memilih metodologi pengembangan (Waterfall, Agile Scrum, atau Hybrid) hanya berdasarkan tren populer, bukan berdasarkan kendala teknis nyata dan batasan regulasi proyek, yang berujung pada kegagalan eksekusi.',
-    solution: 'Menyediakan instrumen web interaktif berbasis riset peer-reviewed (Thesing et al., 2021) dengan evaluasi 2 tahap (Filter Eliminasi Mutlak + Pembobotan 15 Kriteria) dan visualisasi radar komparatif real-time.',
+    title: 'MethodologyIQ — Project Management Decision Support Instrument',
+    category: 'Decision Support & Systems Research',
+    roleBadge: 'Empirical Research & Interactive Visualization',
+    tagline: 'Instrumen visualisasi interaktif hasil riset komparatif metodologi manajemen proyek (Waterfall vs Agile Scrum vs Hybrid) untuk kemudahan pemahaman dan konsensus tim.',
+    problem: 'Banyak pimpinan proyek dan tim rekayasa memilih metode pengembangan hanya berdasarkan tren populer tanpa mempertimbangkan batasan regulasi, stabilitas kebutuhan, dan struktur organisasi riil, yang berujung pada inefisiensi eksekusi proyek.',
+    solution: 'Mengembangkan instrumen web interaktif berbasis kerangka riset ilmiah (Thesing et al., 2021) dengan evaluasi 2 tahap (Filter Eliminasi Mutlak + Pembobotan Multi-Kriteria) yang divisualisasikan secara langsung melalui grafik radar perbandingan.',
     architectureDetails: [
-      'Step 1 Knockout Engine: Evaluasi 5 filter mutlak (Faktor keselamatan/safety-critical, kontrak fixed-price, integrasi rilis tunggal).',
-      'Step 2 Multi-Criteria Scoring: Pembobotan dinamis pada 5 dimensi inti (Fleksibilitas Lingkup, Kesiapan Organisasi, Otonomi Tim, Target Rilis, Prediktabilitas Biaya).',
-      'Dynamic Radar Projection: Menghitung skor kecocokan Waterfall vs Agile vs Hybrid secara real-time pada grafik radar interaktif.',
-      'Stateful Dual-Language Engine: Pengalihan bahasa instan (Bahasa Indonesia & English) tanpa kehilangan state penilaian yang sedang diinput.'
+      'Elimination Filter Engine: Memeriksa 5 kriteria mutlak (misal: batasan regulasi safety-critical atau kontrak fixed-price) sebelum penilaian mendalam.',
+      'Multi-Dimensional Weighted Scoring: Pembobotan dinamis pada fleksibilitas lingkup, otonomi tim, kesiapan organisasi, dan prediktabilitas rilis.',
+      'Interactive Comparative Radar: Proyeksi skor kecocokan Waterfall vs Agile vs Hybrid secara visual dan intuitif.',
+      'Bilingual State Preservation: Kemudahan berganti bahasa (Indonesia & English) secara instan tanpa mereset input penilaian pengguna.'
     ],
     keyFeatures: [
-      { title: '2-Step Knockout & Weighting Pipeline', description: 'Penyaringan otomatis batasan regulasi sebelum masuk ke pembobotan kriteria mendalam.' },
-      { title: 'Comparative Multi-Axis Radar Visualizer', description: 'Grafik radar interaktif yang memproyeksikan kekuatan dan kelemahan proyek terhadap masing-masing metodologi.' },
-      { title: 'Industry Scenario Presets', description: 'Template skenario 1-klik untuk Fintech/Core Banking, E-Commerce MVP, dan Smart IoT Hardware.' }
+      { title: '2-Stage Decision Pipeline', description: 'Penyaringan faktor eliminasi mutlak yang dilanjutkan dengan pembobotan multi-parameter terstruktur.' },
+      { title: 'Dynamic Multi-Axis Radar Visualizer', description: 'Grafik radar interaktif yang memperlihatkan keunggulan komparatif masing-masing metodologi.' },
+      { title: 'Scenario Presets', description: 'Preset studi kasus siap pakai untuk industri Perbankan/Fintech, E-Commerce, dan Perangkat Keras.' }
     ],
     impactMetrics: [
-      { value: '15+', label: 'Kriteria Teruji', description: 'Faktor penilaian berbobot komprehensif berbasis riset' },
-      { value: '100%', label: 'Akurasi Eliminasi', description: 'Penyaringan deterministik batasan regulasi dan kontrak' },
-      { value: '<10 Min', label: 'Konsensus Tim', description: 'Mencapai kesepakatan metodologi proyek dalam 1 sesi diskusi' }
+      { value: '15+ Kriteria', label: 'Evaluasi Teruji', description: 'Faktor penilaian berbasis literatur riset ilmiah' },
+      { value: 'Interaktif', label: 'Visual Radar', description: 'Memudahkan pemahaman konsep manajemen proyek yang kompleks' },
+      { value: 'Konsensus', label: 'Keputusan Cepat', description: 'Membantu tim memilih metodologi yang tepat dalam 1 sesi' }
     ],
-    techStack: ['Modern JavaScript', 'HTML5', 'Tailwind CSS', 'Chart.js Radar Engine', 'GSAP Animation'],
+    techStack: ['Modern JavaScript', 'TypeScript', 'Tailwind CSS', 'Chart.js Radar Engine', 'GSAP Animation'],
     uiTheme: 'amber'
   }
 ];

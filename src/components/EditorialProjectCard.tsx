@@ -7,9 +7,10 @@ import {
   TrendingUp, 
   ShieldCheck, 
   Calendar, 
-  ShoppingBag, 
+  BarChart3, 
   FileSpreadsheet, 
-  Compass
+  Compass,
+  Users
 } from 'lucide-react';
 import type { EditorialProject } from '../data/projectsData';
 
@@ -23,9 +24,9 @@ export const EditorialProjectCard: React.FC<Props> = ({ project, index }) => {
     switch (project.id) {
       case 'community-scheduling':
         return <Calendar className="w-5 h-5 text-emerald-600" />;
-      case 'marketplace-ops':
-        return <ShoppingBag className="w-5 h-5 text-blue-600" />;
-      case 'enterprise-nexus':
+      case 'marketplace-sales-intelligence':
+        return <BarChart3 className="w-5 h-5 text-blue-600" />;
+      case 'enterprise-hr-governance':
         return <FileSpreadsheet className="w-5 h-5 text-indigo-600" />;
       case 'methodology-iq':
         return <Compass className="w-5 h-5 text-amber-600" />;
@@ -52,34 +53,37 @@ export const EditorialProjectCard: React.FC<Props> = ({ project, index }) => {
       id={project.id}
       className="bg-white rounded-3xl border border-slate-200/90 shadow-subtle p-6 sm:p-10 transition-all hover:border-slate-300 hover:shadow-elevation"
     >
-      {/* Header section */}
+      {/* Header Section with Role Badge */}
       <div className="flex flex-wrap items-center justify-between gap-3 pb-6 border-b border-slate-100">
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-center">
+        <div className="flex items-center gap-3.5">
+          <div className="w-11 h-11 rounded-2xl bg-slate-50 border border-slate-200 flex items-center justify-center shrink-0">
             {getIcon()}
           </div>
           <div>
-            <div className="flex items-center gap-2">
+            <div className="flex flex-wrap items-center gap-2">
               <span className="font-mono text-xs font-semibold text-slate-400">0{index + 1} // CASE STUDY</span>
               <span className={`px-2.5 py-0.5 rounded-full text-xs font-medium border ${getThemeBadge()}`}>
                 {project.category}
               </span>
+              <span className="px-2.5 py-0.5 rounded-full text-xs font-mono font-semibold bg-slate-100 text-slate-700 border border-slate-200">
+                {project.roleBadge}
+              </span>
             </div>
-            <h3 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight mt-0.5">
+            <h3 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight mt-1">
               {project.title}
             </h3>
           </div>
         </div>
       </div>
 
-      {/* Main Tagline & Problem-Solution Framing */}
+      {/* Main Tagline */}
       <div className="my-6">
         <p className="text-base sm:text-lg text-slate-700 leading-relaxed font-medium">
           {project.tagline}
         </p>
       </div>
 
-      {/* Embedded High-Fidelity UI Mockup Frame */}
+      {/* High-Fidelity UI Mockup Viewport */}
       <div className="my-8 rounded-2xl bg-slate-900/5 p-2.5 ring-1 ring-slate-200/80 shadow-diffusion overflow-hidden">
         <div className="rounded-xl bg-white border border-slate-200 overflow-hidden font-sans">
           
@@ -91,50 +95,52 @@ export const EditorialProjectCard: React.FC<Props> = ({ project, index }) => {
               <span className="w-2.5 h-2.5 rounded-full bg-slate-300"></span>
             </div>
             <div className="px-3 py-1 rounded-md bg-white border border-slate-200 text-xs font-mono text-slate-500 truncate max-w-sm">
-              system.internal/{project.id}-dashboard
+              app.internal/{project.id}
             </div>
             <div className="flex items-center gap-1.5 text-xs font-mono text-emerald-600 font-semibold">
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-              LIVE PRODUCTION
+              ACTIVE WORKFLOW
             </div>
           </div>
 
-          {/* Dynamic Mock Viewport by Project */}
+          {/* Dynamic Mock Viewport Content */}
           <div className="p-4 sm:p-6 bg-slate-50/40">
+            
+            {/* 1. Community Liturgy & Scheduling UI Mockup */}
             {project.id === 'community-scheduling' && (
               <div className="space-y-4">
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
                   <div className="p-3 bg-white rounded-xl border border-slate-200 shadow-subtle">
-                    <div className="text-slate-500 font-medium">Algoritma Bentrok</div>
+                    <div className="text-slate-500 font-medium">Algoritma Validasi Bentrok</div>
                     <div className="font-mono font-bold text-emerald-600 text-sm sm:text-base mt-1 flex items-center gap-1">
                       <ShieldCheck className="w-4 h-4" /> 0 Konflik (100% Pass)
                     </div>
                   </div>
                   <div className="p-3 bg-white rounded-xl border border-slate-200 shadow-subtle">
-                    <div className="text-slate-500 font-medium">Beban Rotasi Antar Wilayah</div>
+                    <div className="text-slate-500 font-medium">Pemerataan Rotasi Tugas</div>
                     <div className="font-mono font-bold text-slate-900 text-sm sm:text-base mt-1">
-                      35 Wilayah Proporsional
+                      35 Wilayah Terdistribusi
                     </div>
                   </div>
                   <div className="p-3 bg-white rounded-xl border border-slate-200 shadow-subtle">
-                    <div className="text-slate-500 font-medium">Penerbitan Jadwal</div>
+                    <div className="text-slate-500 font-medium">Format Output Warta</div>
                     <div className="font-mono font-bold text-blue-600 text-sm sm:text-base mt-1">
-                      1-Klik WA & PDF Cetak
+                      Siap Cetak PDF & Teks WA
                     </div>
                   </div>
                 </div>
 
                 <div className="border border-slate-200 rounded-xl overflow-hidden bg-white text-xs">
                   <div className="bg-slate-100/90 px-4 py-2 font-semibold text-slate-700 border-b border-slate-200 flex justify-between">
-                    <span>SESI & TANGGAL PELAYANAN</span>
+                    <span>SESI PENUGASAN MISA</span>
                     <span className="hidden sm:inline">WILAYAH / PETUGAS TERTUGAS</span>
-                    <span>STATUS VALIDASI</span>
+                    <span>STATUS VALIDASI SISTEM</span>
                   </div>
                   <div className="divide-y divide-slate-100 font-mono">
                     <div className="px-4 py-3 flex items-center justify-between">
                       <div>
                         <div className="font-bold text-slate-900">Minggu Biasa XXV (07:00 WIB)</div>
-                        <div className="text-slate-500 font-sans text-[11px]">Koordinator: Wilayah 03 • 12 Petugas</div>
+                        <div className="text-slate-500 font-sans text-[11px]">Koordinator: Wilayah 03 • 12 Petugas Liturgi</div>
                       </div>
                       <span className="px-2.5 py-1 rounded bg-emerald-50 text-emerald-700 text-[11px] font-sans font-medium border border-emerald-200 flex items-center gap-1">
                         <CheckCircle2 className="w-3.5 h-3.5" /> Validated (No Overlap)
@@ -143,10 +149,10 @@ export const EditorialProjectCard: React.FC<Props> = ({ project, index }) => {
                     <div className="px-4 py-3 flex items-center justify-between">
                       <div>
                         <div className="font-bold text-slate-900">Minggu Biasa XXV (17:00 WIB)</div>
-                        <div className="text-slate-500 font-sans text-[11px]">Koordinator: Wilayah 11 • 14 Petugas</div>
+                        <div className="text-slate-500 font-sans text-[11px]">Koordinator: Wilayah 11 • 14 Petugas Liturgi</div>
                       </div>
                       <span className="px-2.5 py-1 rounded bg-emerald-50 text-emerald-700 text-[11px] font-sans font-medium border border-emerald-200 flex items-center gap-1">
-                        <CheckCircle2 className="w-3.5 h-3.5" /> Validated (Fair Share)
+                        <CheckCircle2 className="w-3.5 h-3.5" /> Validated (Fair Rotation)
                       </span>
                     </div>
                   </div>
@@ -154,54 +160,59 @@ export const EditorialProjectCard: React.FC<Props> = ({ project, index }) => {
               </div>
             )}
 
-            {project.id === 'marketplace-ops' && (
+            {/* 2. Marketplace Sales Intelligence & Production Planning UI Mockup */}
+            {project.id === 'marketplace-sales-intelligence' && (
               <div className="space-y-4">
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
                   <div className="p-3 bg-white rounded-xl border border-slate-200 shadow-subtle">
-                    <div className="text-slate-500 font-medium">Live Ingested Stream</div>
-                    <div className="font-mono font-bold text-slate-900 text-sm sm:text-base mt-1">1,482 Orders / Hari</div>
+                    <div className="text-slate-500 font-medium">Tren Pertumbuhan Penjualan YoY</div>
+                    <div className="font-mono font-bold text-emerald-600 text-sm sm:text-base mt-1 flex items-center gap-1">
+                      <TrendingUp className="w-4 h-4" /> +24.8% vs Tahun Lalu
+                    </div>
                   </div>
                   <div className="p-3 bg-white rounded-xl border border-slate-200 shadow-subtle">
-                    <div className="text-slate-500 font-medium">SLA Kurir Kritis (&lt;45m)</div>
-                    <div className="font-mono font-bold text-amber-600 text-sm sm:text-base mt-1">3 Pesanan Prioritas</div>
+                    <div className="text-slate-500 font-medium">Agregasi Kanal Marketplace</div>
+                    <div className="font-mono font-bold text-slate-900 text-sm sm:text-base mt-1">
+                      Shopee, Tokopedia, TikTok
+                    </div>
                   </div>
                   <div className="p-3 bg-white rounded-xl border border-slate-200 shadow-subtle">
-                    <div className="text-slate-500 font-medium">Failover Sync Buffer</div>
-                    <div className="font-mono font-bold text-emerald-600 text-sm sm:text-base mt-1">0 Pending (Online Sync)</div>
+                    <div className="text-slate-500 font-medium">Kalkulasi Rencana Produksi</div>
+                    <div className="font-mono font-bold text-blue-600 text-sm sm:text-base mt-1">
+                      Estimasi Batch Qty Siap
+                    </div>
                   </div>
                 </div>
 
                 <div className="border border-slate-200 rounded-xl overflow-hidden bg-white text-xs">
                   <div className="bg-slate-100/90 px-4 py-2 font-semibold text-slate-700 border-b border-slate-200 flex justify-between">
-                    <span>INVOICE & MARKETPLACE</span>
-                    <span className="hidden sm:inline">KURIR & DEADLINE SLA</span>
-                    <span>STATUS OPERASIONAL</span>
+                    <span>KATEGORI PRODUK & KANAL</span>
+                    <span className="hidden sm:inline">VOLUME TERJUAL (YoY)</span>
+                    <span>ESTIMASI KEBUTUHAN PRODUKSI</span>
                   </div>
                   <div className="divide-y divide-slate-100 font-mono">
                     <div className="px-4 py-3 flex items-center justify-between">
                       <div>
-                        <div className="font-bold text-slate-900">INV/2026/SPX/9841</div>
-                        <div className="text-slate-500 font-sans text-[11px]">Shopee • Mechanical Keycaps Set</div>
+                        <div className="font-bold text-slate-900">Desk Accessories Series</div>
+                        <div className="text-slate-500 font-sans text-[11px]">Multi-Channel Data (Shopee + Tokopedia)</div>
                       </div>
-                      <div className="hidden sm:block text-right">
-                        <div className="text-slate-800 font-sans font-medium">SPX Express</div>
-                        <div className="text-[11px] text-amber-600 font-semibold">38m sisa batas</div>
+                      <div className="hidden sm:block text-slate-700">
+                        14,280 Units <span className="text-emerald-600 text-[11px] font-semibold">(+18.2%)</span>
                       </div>
                       <span className="px-2.5 py-1 rounded bg-blue-50 text-blue-700 text-[11px] font-sans font-medium border border-blue-200">
-                        In Packing Stage
+                        Batch 16,000 Pcs (Disetujui)
                       </span>
                     </div>
                     <div className="px-4 py-3 flex items-center justify-between">
                       <div>
-                        <div className="font-bold text-slate-900">INV/2026/TKP/5129</div>
-                        <div className="text-slate-500 font-sans text-[11px]">Tokopedia • Coiled USB-C Aviator Cable</div>
+                        <div className="font-bold text-slate-900">Custom Keycap Collection</div>
+                        <div className="text-slate-500 font-sans text-[11px]">Multi-Channel Data (TikTok + Shopee)</div>
                       </div>
-                      <div className="hidden sm:block text-right">
-                        <div className="text-slate-800 font-sans font-medium">J&T Express</div>
-                        <div className="text-[11px] text-slate-500">110m sisa batas</div>
+                      <div className="hidden sm:block text-slate-700">
+                        8,450 Units <span className="text-emerald-600 text-[11px] font-semibold">(+31.5%)</span>
                       </div>
                       <span className="px-2.5 py-1 rounded bg-emerald-50 text-emerald-700 text-[11px] font-sans font-medium border border-emerald-200">
-                        Ready for Handover
+                        Batch 10,000 Pcs (Optimal)
                       </span>
                     </div>
                   </div>
@@ -209,65 +220,81 @@ export const EditorialProjectCard: React.FC<Props> = ({ project, index }) => {
               </div>
             )}
 
-            {project.id === 'enterprise-nexus' && (
+            {/* 3. Enterprise HR Governance & Talent Pool UI Mockup */}
+            {project.id === 'enterprise-hr-governance' && (
               <div className="space-y-4">
-                <div className="flex flex-wrap items-center justify-between gap-2 bg-white p-3.5 rounded-xl border border-slate-200">
-                  <div className="flex items-center gap-3">
-                    <FileSpreadsheet className="w-5 h-5 text-emerald-600" />
-                    <div>
-                      <div className="text-xs sm:text-sm font-bold text-slate-900">Master_Fulfillment_Registry_2026</div>
-                      <div className="text-[11px] text-slate-500">Divisi Logistik & Warehouse • 28 Staf Terproteksi</div>
-                    </div>
-                  </div>
-                  <span className="px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-mono font-bold border border-emerald-200">
-                    FORMULA PROTECTED
-                  </span>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  
+                  {/* Performance Appraisal Sheets Watcher */}
                   <div className="p-3.5 bg-white rounded-xl border border-slate-200 space-y-2">
-                    <div className="flex justify-between text-slate-600 font-medium">
-                      <span>Apps Script Daily Quota</span>
-                      <span className="font-mono font-bold text-slate-900">34% (Aman)</span>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <FileSpreadsheet className="w-4 h-4 text-emerald-600" />
+                        <span className="text-xs font-bold text-slate-900">Katalog Penilaian Kinerja Karyawan</span>
+                      </div>
+                      <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                        FORMULA LOCKED
+                      </span>
                     </div>
-                    <div className="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
-                      <div className="bg-indigo-600 h-full w-[34%]"></div>
+                    <div className="p-2 bg-slate-50 rounded-lg text-xs space-y-1">
+                      <div className="flex justify-between font-mono text-[11px]">
+                        <span className="text-slate-600 font-sans">Sheet_Penilaian_Kinerja_2026</span>
+                        <span className="text-emerald-700 font-bold">100% Terproteksi</span>
+                      </div>
+                      <div className="text-[10px] text-slate-500">Mencegah rumus bobot KPI & skor tertimpa staf</div>
                     </div>
-                    <div className="text-[10px] text-slate-400">Trigger Executions & Mail API Limit</div>
                   </div>
 
+                  {/* Talent Pool Recruitment Pipeline */}
                   <div className="p-3.5 bg-white rounded-xl border border-slate-200 space-y-2">
-                    <div className="flex justify-between text-slate-600 font-medium">
-                      <span>Integrity Lock Mode</span>
-                      <span className="font-mono font-bold text-emerald-600">100% Locked</span>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <Users className="w-4 h-4 text-indigo-600" />
+                        <span className="text-xs font-bold text-slate-900">Talent Pool Pipeline Rekrutmen</span>
+                      </div>
+                      <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-indigo-50 text-indigo-700 border border-indigo-200">
+                        7 AKTIF
+                      </span>
                     </div>
-                    <div className="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
-                      <div className="bg-emerald-500 h-full w-[100%]"></div>
+                    <div className="grid grid-cols-3 gap-1.5 text-center text-[10px] font-mono">
+                      <div className="p-1.5 rounded bg-slate-50 border border-slate-200">
+                        <div className="text-slate-500 font-sans">Screening</div>
+                        <div className="font-bold text-slate-900">4 Berkas</div>
+                      </div>
+                      <div className="p-1.5 rounded bg-indigo-50 border border-indigo-200 text-indigo-900">
+                        <div className="text-indigo-700 font-sans">Interview</div>
+                        <div className="font-bold">2 Kandidat</div>
+                      </div>
+                      <div className="p-1.5 rounded bg-emerald-50 border border-emerald-200 text-emerald-900">
+                        <div className="text-emerald-700 font-sans">Offering</div>
+                        <div className="font-bold">1 Staged</div>
+                      </div>
                     </div>
-                    <div className="text-[10px] text-slate-400">Zero accidental formula overwrites</div>
                   </div>
+
                 </div>
               </div>
             )}
 
+            {/* 4. MethodologyIQ Decision Support UI Mockup */}
             {project.id === 'methodology-iq' && (
               <div className="space-y-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
                   <div className="p-3.5 bg-white rounded-xl border border-slate-200 space-y-2">
                     <div className="flex justify-between font-medium">
-                      <span className="text-slate-800">Agile Scrum Suitability</span>
-                      <span className="font-mono font-bold text-emerald-700">78%</span>
+                      <span className="text-slate-800 font-semibold">Agile Scrum Suitability</span>
+                      <span className="font-mono font-bold text-emerald-700">78% Match</span>
                     </div>
                     <div className="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden">
                       <div className="bg-emerald-600 h-full w-[78%]"></div>
                     </div>
-                    <div className="text-[10px] text-slate-500">Tinggi pada fleksibilitas lingkup & iterasi cepat</div>
+                    <div className="text-[10px] text-slate-500">Tinggi pada fleksibilitas lingkup & feedback berkala</div>
                   </div>
 
                   <div className="p-3.5 bg-white rounded-xl border border-slate-200 space-y-2">
                     <div className="flex justify-between font-medium">
-                      <span className="text-slate-800">Waterfall Suitability</span>
-                      <span className="font-mono font-bold text-indigo-700">35%</span>
+                      <span className="text-slate-800 font-semibold">Waterfall Suitability</span>
+                      <span className="font-mono font-bold text-indigo-700">35% Match</span>
                     </div>
                     <div className="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden">
                       <div className="bg-indigo-600 h-full w-[35%]"></div>
@@ -283,20 +310,21 @@ export const EditorialProjectCard: React.FC<Props> = ({ project, index }) => {
                     </span>
                     <span className="text-slate-600">Eliminasi Faktor Regulasi & Keselamatan Selesai</span>
                   </div>
-                  <span className="font-mono text-slate-500 text-[11px]">Model: Thesing et al. (2021)</span>
+                  <span className="font-mono text-slate-500 text-[11px]">Model Riset: Thesing et al. (2021)</span>
                 </div>
               </div>
             )}
+
           </div>
         </div>
       </div>
 
-      {/* Deep Problem & Solution Section */}
+      {/* Problem & Solution Deep Breakdown */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 my-8">
         <div className="p-5 sm:p-6 rounded-2xl bg-rose-50/40 border border-rose-100">
           <div className="flex items-center gap-2 text-rose-700 font-bold text-sm mb-2">
             <AlertTriangle className="w-4 h-4" />
-            The Friction / Problem Statement
+            Latar Belakang & Masalah Riil (Problem Statement)
           </div>
           <p className="text-slate-700 text-sm leading-relaxed">
             {project.problem}
@@ -306,7 +334,7 @@ export const EditorialProjectCard: React.FC<Props> = ({ project, index }) => {
         <div className="p-5 sm:p-6 rounded-2xl bg-emerald-50/40 border border-emerald-100">
           <div className="flex items-center gap-2 text-emerald-800 font-bold text-sm mb-2">
             <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-            The Engineering Solution
+            Solusi Rekayasa Sistem (Engineering Solution)
           </div>
           <p className="text-slate-700 text-sm leading-relaxed">
             {project.solution}
@@ -314,7 +342,7 @@ export const EditorialProjectCard: React.FC<Props> = ({ project, index }) => {
         </div>
       </div>
 
-      {/* Deep System Architecture Breakdown */}
+      {/* System Architecture Points */}
       <div className="my-8">
         <div className="flex items-center gap-2 text-slate-900 font-bold text-base mb-4">
           <Layers className="w-5 h-5 text-slate-700" />
@@ -338,7 +366,7 @@ export const EditorialProjectCard: React.FC<Props> = ({ project, index }) => {
         </div>
       </div>
 
-      {/* Verified Metrics / Impact */}
+      {/* Verified Real-world Metrics */}
       <div className="my-8">
         <div className="flex items-center gap-2 text-slate-900 font-bold text-base mb-4">
           <TrendingUp className="w-5 h-5 text-slate-700" />
@@ -361,10 +389,10 @@ export const EditorialProjectCard: React.FC<Props> = ({ project, index }) => {
         </div>
       </div>
 
-      {/* Tech Stack Pills Footer */}
+      {/* Tech Stack Footer */}
       <div className="pt-6 border-t border-slate-100 flex flex-wrap items-center justify-between gap-4">
         <div className="flex flex-wrap items-center gap-2">
-          <span className="text-xs font-medium text-slate-400 mr-1">Stack:</span>
+          <span className="text-xs font-medium text-slate-400 mr-1">Tech Stack:</span>
           {project.techStack.map((tech) => (
             <span 
               key={tech}
