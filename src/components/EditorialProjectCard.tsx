@@ -8,7 +8,10 @@ import {
   BarChart3, 
   Users, 
   Compass,
-  Briefcase
+  Briefcase,
+  FileSpreadsheet,
+  Zap,
+  ArrowRight
 } from 'lucide-react';
 import type { EditorialProject } from '../data/projectsData';
 import { ProjectMultiScreenGallery } from './ProjectMultiScreenGallery';
@@ -74,7 +77,7 @@ export const EditorialProjectCard: React.FC<Props> = ({ project, index }) => {
         projectId={project.id}
       />
 
-      {/* Problem & Solution Breakdown: Harmonious 60-30-10 Structure */}
+      {/* Problem & Solution Breakdown */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 my-8">
         <div className="p-5 sm:p-6 rounded-2xl bg-slate-50 border border-slate-200">
           <div className="flex items-center gap-2 text-slate-900 font-bold text-sm mb-2">
@@ -86,7 +89,7 @@ export const EditorialProjectCard: React.FC<Props> = ({ project, index }) => {
           </p>
         </div>
 
-        <div className="p-5 sm:p-6 rounded-2xl bg-slate-50 border border-blue-200/70 bg-blue-50/20">
+        <div className="p-5 sm:p-6 rounded-2xl bg-blue-50/20 border border-blue-200/70">
           <div className="flex items-center gap-2 text-blue-900 font-bold text-sm mb-2">
             <CheckCircle2 className="w-4 h-4 text-blue-600" />
             Solusi Rekayasa Sistem (Engineering Solution)
@@ -96,6 +99,58 @@ export const EditorialProjectCard: React.FC<Props> = ({ project, index }) => {
           </p>
         </div>
       </div>
+
+      {/* Before vs After: Transformasi Operasional Spreadsheet ke Web App */}
+      {project.beforeAfter && (
+        <div className="my-8 p-5 sm:p-7 rounded-2xl bg-slate-50 border border-slate-200">
+          <div className="flex flex-wrap items-center justify-between gap-2 mb-5">
+            <div className="flex items-center gap-2">
+              <Zap className="w-4 h-4 text-blue-600" />
+              <span className="text-sm font-bold text-slate-900 uppercase tracking-wider font-mono">
+                Transformasi Nyata: Spreadsheet Manual vs Web App Otomatis
+              </span>
+            </div>
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-blue-50 text-blue-800 border border-blue-200/80">
+              <span className="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
+              {project.beforeAfter.roiHighlight}
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {/* Before Column */}
+            <div className="p-4 rounded-xl bg-white border border-slate-200 shadow-2xs">
+              <div className="flex items-center gap-2 text-xs font-bold text-slate-600 uppercase tracking-wider mb-3">
+                <FileSpreadsheet className="w-4 h-4 text-slate-400" />
+                Sebelumnya (Era Manual Spreadsheet)
+              </div>
+              <ul className="space-y-2 text-xs sm:text-sm text-slate-600">
+                {project.beforeAfter.before.map((item, idx) => (
+                  <li key={idx} className="flex items-start gap-2">
+                    <span className="text-slate-400 font-mono text-xs mt-0.5">•</span>
+                    <span className="leading-relaxed">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* After Column */}
+            <div className="p-4 rounded-xl bg-white border border-blue-200/90 shadow-2xs ring-1 ring-blue-500/10">
+              <div className="flex items-center gap-2 text-xs font-bold text-blue-800 uppercase tracking-wider mb-3">
+                <CheckCircle2 className="w-4 h-4 text-blue-600" />
+                Sesudahnya (Sistem Terotomasi Terpadu)
+              </div>
+              <ul className="space-y-2 text-xs sm:text-sm text-slate-700">
+                {project.beforeAfter.after.map((item, idx) => (
+                  <li key={idx} className="flex items-start gap-2">
+                    <ArrowRight className="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5" />
+                    <span className="leading-relaxed font-medium">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* System Architecture Points */}
       <div className="my-8">
