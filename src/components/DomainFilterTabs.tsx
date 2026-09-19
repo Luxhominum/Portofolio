@@ -17,33 +17,33 @@ export const DomainFilterTabs: React.FC<DomainFilterTabsProps> = ({
   const tabs: { id: DomainCategory; label: string; icon: React.ReactNode }[] = [
     {
       id: 'all',
-      label: 'Semua Solusi',
+      label: 'ALL SYSTEMS',
       icon: <LayoutGrid className="w-3.5 h-3.5" />
     },
     {
       id: 'hr-enterprise',
-      label: 'Enterprise HR & Governance',
+      label: 'HR TECH & GOVERNANCE',
       icon: <Users className="w-3.5 h-3.5" />
     },
     {
       id: 'data-marketplace',
-      label: 'Marketplace & Sales Analytics',
+      label: 'SALES & MARKETPLACE INTEL',
       icon: <BarChart3 className="w-3.5 h-3.5" />
     },
     {
       id: 'community-ops',
-      label: 'Operations & Resource Planning',
+      label: 'OPERATIONS & SCHEDULING',
       icon: <Calendar className="w-3.5 h-3.5" />
     },
     {
       id: 'research-methodology',
-      label: 'Methodology & Decision Intelligence',
+      label: 'DECISION METHODOLOGY',
       icon: <Compass className="w-3.5 h-3.5" />
     }
   ];
 
   return (
-    <div className="flex items-center gap-2 overflow-x-auto pb-3 pt-1 scrollbar-none no-scrollbar">
+    <div className="flex items-center gap-2.5 overflow-x-auto pb-3 pt-1 scrollbar-none no-scrollbar font-mono">
       {tabs.map((tab) => {
         const isActive = activeDomain === tab.id;
         const count = counts[tab.id] || 0;
@@ -52,21 +52,21 @@ export const DomainFilterTabs: React.FC<DomainFilterTabsProps> = ({
           <button
             key={tab.id}
             onClick={() => onSelectDomain(tab.id)}
-            className={`inline-flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-semibold whitespace-nowrap transition-all duration-200 cursor-pointer ${
+            className={`inline-flex items-center gap-2 px-4 py-2 text-xs font-bold uppercase whitespace-nowrap transition-all duration-150 cursor-pointer ${
               isActive
-                ? 'bg-slate-900 text-white shadow-sm ring-1 ring-slate-900'
-                : 'bg-white text-slate-600 border border-slate-200/90 hover:bg-slate-100/70 hover:text-slate-900'
+                ? 'bg-black text-white border-2 border-black shadow-[3px_3px_0px_0px_rgba(255,85,0,1)]'
+                : 'bg-white text-black border-2 border-black hover:bg-zinc-100 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] active:translate-x-0.5 active:translate-y-0.5'
             }`}
           >
-            <span className={isActive ? 'text-blue-400' : 'text-slate-400'}>
+            <span className={isActive ? 'text-orange-400' : 'text-black'}>
               {tab.icon}
             </span>
             <span>{tab.label}</span>
             <span
-              className={`text-[10px] font-mono px-1.5 py-0.5 rounded-full ${
+              className={`text-[10px] font-mono font-bold px-1.5 py-0.2 rounded-xs ${
                 isActive
-                  ? 'bg-slate-800 text-slate-300'
-                  : 'bg-slate-100 text-slate-500'
+                  ? 'bg-orange-500 text-white'
+                  : 'bg-zinc-200 text-black'
               }`}
             >
               {count}

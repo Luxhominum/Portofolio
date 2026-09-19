@@ -9,59 +9,74 @@ import {
 export const TechMatrix: React.FC = () => {
   const quadrants = [
     {
+      code: 'SYS-01',
       title: 'Frontend & Interaction Engineering',
       icon: Code2,
-      skills: ['React 19', 'TypeScript', 'Tailwind CSS', 'Vite', 'HTML5 Canvas', 'Chart.js', 'GSAP Animation', 'WCAG 2.1 AA Standards']
+      skills: ['React 19', 'TypeScript', 'Tailwind CSS', 'Vite', 'HTML5 Canvas', 'Chart.js', 'GSAP Motion', 'WCAG 2.1 AA Standards']
     },
     {
+      code: 'SYS-02',
       title: 'Enterprise Architecture & Cloud',
       icon: Layers,
       skills: ['Firebase Firestore', 'Cloud Functions', 'Google Apps Script API', 'REST APIs', 'OAuth 2.0 / RBAC', 'Deterministic Validators']
     },
     {
+      code: 'SYS-03',
       title: 'Data Intelligence & Analytics',
       icon: Database,
       skills: ['Multi-Channel Normalizer', 'Year-over-Year (YoY) Engine', 'Production Forecasting Models', 'Empirical Decision Trees', 'Python Scrapers']
     },
     {
+      code: 'SYS-04',
       title: 'Engineering Rigor & Operations',
       icon: ShieldCheck,
-      skills: ['Zero-Conflict Verification', 'Formula Integrity Locking', 'Talent Pipeline Workflows', 'Clean Architecture', 'Studio Light Design Systems']
+      skills: ['Zero-Conflict Verification', 'Formula Integrity Locking', 'Talent Pipeline Workflows', 'Clean Architecture', 'Industrial Design Systems']
     }
   ];
 
   return (
-    <section id="architecture" className="py-16 sm:py-20 border-b border-slate-200/80 bg-slate-50">
+    <section id="architecture" className="py-20 border-b-2 border-black bg-zinc-50">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-2xl mb-10">
-          <span className="text-xs font-mono font-bold text-slate-400 uppercase tracking-wider">
-            Core Competencies & Stack
-          </span>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight mt-1.5">
-            Kompetensi Rekayasa & Prinsip Arsitektur
-          </h2>
-          <p className="text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed">
-            Menghubungkan ketelitian kode frontend dengan ketahanan sistem cloud enterprise, otomasi alur kerja operasional, dan algoritma analitik matematis.
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4 pb-6 border-b-2 border-black">
+          <div>
+            <div className="inline-flex items-center gap-2 px-2.5 py-1 bg-black text-white text-[10px] font-mono font-bold uppercase tracking-widest mb-3">
+              <span className="w-1.5 h-1.5 bg-orange-500 rounded-full animate-pulse" />
+              SPEC // 04-QUADRANT STACK
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-black text-black tracking-tight uppercase">
+              Kompetensi Rekayasa & Arsitektur
+            </h2>
+          </div>
+          <p className="text-xs sm:text-sm text-zinc-600 max-w-md font-mono leading-relaxed">
+            Menghubungkan ketelitian kode frontend dengan ketahanan sistem cloud enterprise, otomasi alur kerja operasional, dan analitik data terverifikasi.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {quadrants.map(q => {
             const Icon = q.icon;
             return (
-              <div key={q.title} className="bg-white border border-slate-200/90 rounded-2xl p-6 shadow-subtle hover:border-slate-300 transition-all">
-                <div className="flex items-center gap-3 pb-3 mb-4 border-b border-slate-100">
-                  <div className="p-2 rounded-xl bg-slate-50 border border-slate-200 text-blue-600 shadow-2xs">
-                    <Icon className="w-5 h-5 text-blue-600" />
+              <div 
+                key={q.title} 
+                className="bg-white border-2 border-black p-6 shadow-[5px_5px_0px_0px_rgba(0,0,0,1)] hover:shadow-[7px_7px_0px_0px_rgba(255,85,0,1)] hover:border-black transition-all group"
+              >
+                <div className="flex items-center justify-between pb-4 mb-5 border-b-2 border-zinc-100">
+                  <div className="flex items-center gap-3">
+                    <div className="p-2.5 bg-zinc-100 border-2 border-black group-hover:bg-orange-500 group-hover:text-white transition-colors text-black">
+                      <Icon className="w-5 h-5" />
+                    </div>
+                    <h3 className="text-sm font-black text-black uppercase tracking-tight">{q.title}</h3>
                   </div>
-                  <h3 className="text-sm font-bold text-slate-900 tracking-tight">{q.title}</h3>
+                  <span className="text-[10px] font-mono font-bold text-zinc-400 group-hover:text-orange-600 transition-colors">
+                    {q.code}
+                  </span>
                 </div>
 
                 <div className="flex flex-wrap gap-2">
                   {q.skills.map(sk => (
                     <span
                       key={sk}
-                      className="text-xs font-mono px-2.5 py-1 rounded-md bg-slate-50 border border-slate-200 text-slate-700 font-medium"
+                      className="text-xs font-mono px-2.5 py-1 bg-zinc-50 border border-zinc-300 text-zinc-800 font-semibold hover:border-black hover:bg-black hover:text-white transition-all cursor-default"
                     >
                       {sk}
                     </span>

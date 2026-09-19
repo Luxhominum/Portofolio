@@ -19,9 +19,10 @@ export function App() {
     setCopiedEmail(true);
     try {
       confetti({
-        particleCount: 35,
-        spread: 50,
-        origin: { y: 0.1 }
+        particleCount: 40,
+        spread: 60,
+        origin: { y: 0.1 },
+        colors: ['#FF5500', '#000000', '#FFFFFF']
       });
     } catch (e) {}
     setTimeout(() => setCopiedEmail(false), 3000);
@@ -45,25 +46,28 @@ export function App() {
   }, [activeDomain]);
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 font-sans flex flex-col antialiased selection:bg-blue-100 selection:text-blue-900">
+    <div className="min-h-screen bg-zinc-50 text-black font-sans flex flex-col antialiased selection:bg-orange-500 selection:text-white">
       <Navbar onCopyEmail={handleCopyEmail} copied={copiedEmail} />
       
       <main className="flex-1">
         <HeroSection />
 
-        {/* Featured Flagship Case Studies (Editorial Long-Form) */}
-        <section id="projects" className="py-16 sm:py-24 border-b border-slate-200/80 bg-slate-50">
+        {/* Featured Flagship Case Studies (Split Studio Slider) */}
+        <section id="projects" className="py-20 sm:py-28 border-b-2 border-black bg-zinc-50">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             
-            <div className="max-w-3xl mb-8 sm:mb-10">
-              <span className="text-xs font-mono font-bold text-slate-400 uppercase tracking-wider">
-                Production Case Studies
-              </span>
-              <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mt-1.5">
-                Studi Kasus Rekayasa Sistem Nyata
-              </h2>
-              <p className="text-sm sm:text-base text-slate-600 mt-2 leading-relaxed">
-                Setiap proyek di bawah ini mendokumentasikan tantangan bisnis riil, visual antarmuka produksi berdensitas tinggi, arsitektur pencegahan kegagalan, dan metrik hasil yang terukur.
+            <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6 pb-6 border-b-2 border-black">
+              <div>
+                <div className="inline-flex items-center gap-2 px-2.5 py-1 bg-black text-white text-[10px] font-mono font-bold uppercase tracking-widest mb-3">
+                  <span className="w-1.5 h-1.5 bg-orange-500 rounded-full animate-pulse" />
+                  CASE STUDIES // PRODUCTION ARCHIVE
+                </div>
+                <h2 className="text-3xl sm:text-5xl font-black text-black tracking-tight uppercase leading-none">
+                  Studi Kasus Sistem Nyata
+                </h2>
+              </div>
+              <p className="text-xs sm:text-sm text-zinc-600 font-mono max-w-md leading-relaxed">
+                Visual antarmuka resolusi tinggi, alur kerja deterministic, validasi anti-konflik, dan pengukuran performa terverifikasi.
               </p>
             </div>
 

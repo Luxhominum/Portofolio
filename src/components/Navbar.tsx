@@ -8,46 +8,52 @@ interface NavbarProps {
 
 export const Navbar: React.FC<NavbarProps> = ({ onCopyEmail, copied }) => {
   return (
-    <header className="sticky top-0 z-40 w-full bg-white/80 backdrop-blur-md border-b border-slate-200/80 transition-all">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+    <header className="sticky top-0 z-40 w-full bg-white/95 backdrop-blur-md border-b-2 border-black transition-all">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between font-sans">
+        
+        {/* Brand & Status */}
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-lg bg-slate-900 text-white flex items-center justify-center font-bold text-sm shadow-2xs">
-            L
+          <div className="w-8 h-8 bg-black text-white flex items-center justify-center font-mono font-black text-sm tracking-tighter">
+            TE
           </div>
           <div>
-            <div className="text-sm font-bold text-slate-900 tracking-tight flex items-center gap-2">
-              <span>HR & Systems Product Engineer</span>
-              <span className="hidden sm:inline-flex items-center gap-1.5 text-[11px] font-medium text-blue-700 bg-blue-50 px-2.5 py-0.5 rounded-full border border-blue-200/80">
-                <span className="w-1.5 h-1.5 rounded-full bg-blue-600 animate-pulse"></span>
-                Tersedia untuk Kolaborasi
+            <div className="text-sm font-black text-black tracking-tight uppercase flex items-center gap-2">
+              <span>Systems & HR Product Engineer</span>
+              <span className="hidden sm:inline-flex items-center gap-1.5 text-[10px] font-mono font-bold text-orange-700 bg-orange-50 px-2 py-0.5 border border-orange-300">
+                <span className="w-1.5 h-1.5 bg-orange-500 animate-pulse"></span>
+                ACTIVE / AVAILABILITY: READY
               </span>
             </div>
           </div>
         </div>
 
-        <nav className="hidden md:flex items-center gap-6 text-xs font-medium text-slate-600">
-          <a href="#projects" className="hover:text-slate-900 transition-colors">Studi Kasus Sistem</a>
-          <a href="#architecture" className="hover:text-slate-900 transition-colors">Kompetensi & Stack</a>
-          <a href="#contact" className="hover:text-slate-900 transition-colors">Hubungi Saya</a>
+        {/* Navigation Links */}
+        <nav className="hidden md:flex items-center gap-6 text-xs font-mono font-bold text-black uppercase tracking-wider">
+          <a href="#projects" className="hover:text-orange-600 transition-colors">01 // Projects</a>
+          <a href="#philosophy" className="hover:text-orange-600 transition-colors">02 // Framework</a>
+          <a href="#architecture" className="hover:text-orange-600 transition-colors">03 // Stack</a>
+          <a href="#contact" className="hover:text-orange-600 transition-colors">04 // Contact</a>
         </nav>
 
-        <div className="flex items-center gap-2.5">
+        {/* Action Buttons */}
+        <div className="flex items-center gap-2">
           <button
             onClick={onCopyEmail}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-white text-slate-700 border border-slate-200 hover:bg-slate-50 transition-all shadow-2xs active:scale-[0.98] cursor-pointer"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono font-bold bg-zinc-100 text-black border border-black hover:bg-zinc-200 transition-all active:translate-y-0.5 cursor-pointer"
             title="Salin email ke clipboard"
           >
-            {copied ? <Check className="w-3.5 h-3.5 text-blue-600" /> : <Copy className="w-3.5 h-3.5 text-slate-400" />}
-            <span className="font-mono text-[11px]">{copied ? 'Email Tersalin!' : 'developer@contact.id'}</span>
+            {copied ? <Check className="w-3.5 h-3.5 text-orange-600" /> : <Copy className="w-3.5 h-3.5 text-black" />}
+            <span className="text-[11px]">{copied ? 'COPIED!' : 'developer@contact.id'}</span>
           </button>
 
           <a
             href="#contact"
-            className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-slate-900 text-white hover:bg-slate-800 transition-all shadow-2xs active:scale-[0.98]"
+            className="hidden sm:inline-flex items-center gap-1 px-3.5 py-1.5 text-xs font-mono font-bold bg-black text-white hover:bg-orange-600 transition-all active:translate-y-0.5 uppercase tracking-wider"
           >
-            <span>Hubungi Saya</span>
+            <span>Reach Out &rarr;</span>
           </a>
         </div>
+
       </div>
     </header>
   );

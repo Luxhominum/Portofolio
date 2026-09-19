@@ -5,23 +5,31 @@
 @layer base {
   body {
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    background-color: #ffffff;
+    color: #000000;
   }
 }
 
-/* Custom crisp scrollbar */
+/* Teenage Engineering International Orange Selection */
+::selection {
+  background-color: #ff5500;
+  color: #ffffff;
+}
+
+/* Custom High-Contrast Industrial Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #f8fafc;
+  background: #ffffff;
 }
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
-  border-radius: 9999px;
+  background: #000000;
+  border-radius: 0px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+  background: #ff5500;
 }
 
 /* Smooth Fade In keyframes */
@@ -37,5 +45,5 @@
 }
 
 .animate-fadeIn {
-  animation: fadeIn 0.25s ease-out forwards;
+  animation: fadeIn 0.2s ease-out forwards;
 }
