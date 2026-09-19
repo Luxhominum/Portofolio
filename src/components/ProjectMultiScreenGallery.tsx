@@ -9,7 +9,6 @@ import {
 
 interface Props {
   projectId: string;
-  uiTheme: 'emerald' | 'blue' | 'indigo' | 'amber';
 }
 
 interface ScreenTab {
@@ -171,7 +170,7 @@ const SCREENS_BY_PROJECT: Record<string, ScreenTab[]> = {
   ]
 };
 
-export const ProjectMultiScreenGallery: React.FC<Props> = ({ projectId, uiTheme }) => {
+export const ProjectMultiScreenGallery: React.FC<Props> = ({ projectId }) => {
   const screens = SCREENS_BY_PROJECT[projectId] || SCREENS_BY_PROJECT['community-scheduling'];
   const [activeScreenIndex, setActiveScreenIndex] = useState(0);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
@@ -193,15 +192,6 @@ export const ProjectMultiScreenGallery: React.FC<Props> = ({ projectId, uiTheme 
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isLightboxOpen, screens.length]);
 
-  const getThemeColor = () => {
-    switch (uiTheme) {
-      case 'emerald': return 'border-emerald-600 text-emerald-800 bg-emerald-50';
-      case 'blue': return 'border-blue-600 text-blue-800 bg-blue-50';
-      case 'indigo': return 'border-indigo-600 text-indigo-800 bg-indigo-50';
-      case 'amber': return 'border-amber-600 text-amber-800 bg-amber-50';
-    }
-  };
-
   const getImageUrl = (screenId: string) => {
     const base = import.meta.env.BASE_URL.endsWith('/') 
       ? import.meta.env.BASE_URL 
@@ -221,7 +211,7 @@ export const ProjectMultiScreenGallery: React.FC<Props> = ({ projectId, uiTheme 
     <div className="my-8 rounded-2xl bg-slate-900/5 p-3 sm:p-4 ring-1 ring-slate-200/90 shadow-diffusion overflow-hidden">
       <div className="rounded-xl bg-white border border-slate-200 overflow-hidden font-sans">
         
-        {/* Gallery Header Bar */}
+        {/* Gallery Header Bar: 30% Slate, 10% Blue Accent */}
         <div className="bg-slate-100/90 border-b border-slate-200 p-3 sm:p-3.5">
           <div className="flex flex-wrap items-center justify-between gap-2 mb-2.5 px-1">
             <div className="flex items-center gap-2">
@@ -234,12 +224,12 @@ export const ProjectMultiScreenGallery: React.FC<Props> = ({ projectId, uiTheme 
               </span>
             </div>
             <div className="flex items-center gap-2">
-              <span className="text-[11px] font-mono font-bold text-slate-600 bg-white px-2.5 py-0.5 rounded-md border border-slate-200 shadow-xs">
+              <span className="text-[11px] font-mono font-bold text-slate-600 bg-white px-2.5 py-0.5 rounded-md border border-slate-200 shadow-2xs">
                 Layar {activeScreenIndex + 1} / 5
               </span>
               <button
                 onClick={() => setIsLightboxOpen(true)}
-                className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-md bg-white border border-slate-200 text-slate-700 text-[11px] font-medium hover:bg-slate-50 transition-colors shadow-xs cursor-pointer"
+                className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-md bg-white border border-slate-200 text-slate-700 text-[11px] font-medium hover:bg-slate-50 transition-colors shadow-2xs cursor-pointer"
                 title="Buka Layar Penuh"
               >
                 <Maximize2 className="w-3 h-3 text-slate-500" />
@@ -248,7 +238,7 @@ export const ProjectMultiScreenGallery: React.FC<Props> = ({ projectId, uiTheme 
             </div>
           </div>
 
-          {/* Interactive Screen Selector Pills */}
+          {/* Interactive Screen Selector: 60-30-10 Balanced */}
           <div className="grid grid-cols-2 sm:grid-cols-5 gap-1.5">
             {screens.map((screen, idx) => {
               const isActive = idx === activeScreenIndex;
@@ -258,7 +248,7 @@ export const ProjectMultiScreenGallery: React.FC<Props> = ({ projectId, uiTheme 
                   onClick={() => setActiveScreenIndex(idx)}
                   className={`text-left p-2 rounded-lg border transition-all duration-200 text-xs cursor-pointer ${
                     isActive 
-                      ? `bg-white shadow-subtle font-bold text-slate-900 ${getThemeColor()} border-l-4` 
+                      ? 'bg-white shadow-subtle font-bold text-slate-900 border-l-4 border-blue-600 border-slate-300' 
                       : 'bg-slate-50/70 border-slate-200/70 text-slate-600 hover:bg-white hover:text-slate-900'
                   }`}
                 >
@@ -319,20 +309,20 @@ export const ProjectMultiScreenGallery: React.FC<Props> = ({ projectId, uiTheme 
           </button>
         </div>
 
-        {/* Screen Description Context Footer (Smooth Fade on Text) */}
+        {/* Screen Description Context Footer */}
         <div className="p-3 sm:p-4 bg-slate-50 border-t border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs">
           <div key={activeScreen.id} className="animate-fadeIn">
             <span className="font-bold text-slate-900">{activeScreen.title}: </span>
             <span className="text-slate-600">{activeScreen.description}</span>
           </div>
-          <span className="px-2 py-0.5 rounded bg-white text-slate-700 font-mono text-[10px] font-semibold border border-slate-200 shrink-0 self-start sm:self-auto shadow-2xs">
+          <span className="px-2.5 py-0.5 rounded bg-blue-50 text-blue-700 font-mono text-[10px] font-semibold border border-blue-200 shrink-0 self-start sm:self-auto shadow-2xs">
             {activeScreen.badge}
           </span>
         </div>
 
       </div>
 
-      {/* Fullscreen Lightbox Modal (with smooth stacked cross-fade) */}
+      {/* Fullscreen Lightbox Modal */}
       {isLightboxOpen && (
         <div 
           className="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md flex items-center justify-center p-4 sm:p-8 animate-fadeIn"

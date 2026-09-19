@@ -6,14 +6,14 @@ export const HeroSection: React.FC = () => {
     <section className="relative pt-12 pb-16 md:pt-20 md:pb-24 overflow-hidden bg-gradient-to-b from-slate-100/60 via-slate-50 to-white border-b border-slate-200/80">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Top Tag & Availability */}
+        {/* Top Tag & Availability: 60-30-10 Cohesive Palette */}
         <div className="flex flex-wrap items-center gap-2.5 mb-6">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white border border-slate-200/90 text-slate-800 text-xs font-semibold shadow-subtle">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white border border-slate-200/90 text-slate-800 text-xs font-semibold shadow-2xs">
             <Sparkles className="w-3.5 h-3.5 text-blue-600" />
             <span>HR & Enterprise Systems Product Engineer</span>
           </div>
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-medium">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 border border-blue-200/80 text-blue-700 text-xs font-medium">
+            <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse"></span>
             <span>Tersedia untuk Peluang Baru & Kolaborasi</span>
           </div>
         </div>
@@ -21,7 +21,7 @@ export const HeroSection: React.FC = () => {
         {/* Editorial Headline */}
         <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.12] max-w-4xl">
           Membangun Solusi Rekayasa Perangkat Lunak <br className="hidden sm:inline" />
-          <span className="bg-gradient-to-r from-slate-900 via-blue-900 to-indigo-800 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-slate-900 via-slate-800 to-blue-700 bg-clip-text text-transparent">
             untuk Masalah Operasional Nyata.
           </span>
         </h1>
@@ -52,19 +52,19 @@ export const HeroSection: React.FC = () => {
 
         {/* 4 Architectural Pillar Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12 pt-8 border-t border-slate-200">
-          <div className="p-3.5 rounded-xl bg-white/70 border border-slate-200/80 shadow-subtle">
+          <div className="p-3.5 rounded-xl bg-white/80 border border-slate-200 shadow-2xs">
             <div className="text-2xl sm:text-3xl font-bold font-mono text-slate-900">0 Konflik</div>
             <div className="text-xs text-slate-600 font-medium mt-0.5">Penjadwalan 35 Wilayah</div>
           </div>
-          <div className="p-3.5 rounded-xl bg-white/70 border border-slate-200/80 shadow-subtle">
+          <div className="p-3.5 rounded-xl bg-white/80 border border-slate-200 shadow-2xs">
             <div className="text-2xl sm:text-3xl font-bold font-mono text-slate-900">Multi-YoY</div>
             <div className="text-xs text-slate-600 font-medium mt-0.5">Analitik Sales Marketplace</div>
           </div>
-          <div className="p-3.5 rounded-xl bg-white/70 border border-slate-200/80 shadow-subtle">
+          <div className="p-3.5 rounded-xl bg-white/80 border border-slate-200 shadow-2xs">
             <div className="text-2xl sm:text-3xl font-bold font-mono text-slate-900">100% Lock</div>
             <div className="text-xs text-slate-600 font-medium mt-0.5">Sheet HR & Talent Pool</div>
           </div>
-          <div className="p-3.5 rounded-xl bg-white/70 border border-slate-200/80 shadow-subtle">
+          <div className="p-3.5 rounded-xl bg-white/80 border border-slate-200 shadow-2xs">
             <div className="text-2xl sm:text-3xl font-bold font-mono text-slate-900">15+ Kriteria</div>
             <div className="text-xs text-slate-600 font-medium mt-0.5">Riset Metodologi Proyek</div>
           </div>

@@ -9,39 +9,39 @@ import {
 export const TechMatrix: React.FC = () => {
   const quadrants = [
     {
-      title: 'Frontend & Interaction Craft',
+      title: 'Frontend & Interaction Engineering',
       icon: Code2,
-      skills: ['React 19', 'TypeScript', 'Tailwind CSS', 'Vite', 'GSAP Animation', 'Framer Motion', 'Chart.js', 'HTML5 Canvas', 'Responsive Web Standards']
+      skills: ['React 19', 'TypeScript', 'Tailwind CSS', 'Vite', 'HTML5 Canvas', 'Chart.js', 'GSAP Animation', 'WCAG 2.1 AA Standards']
     },
     {
       title: 'Enterprise Architecture & Cloud',
       icon: Layers,
-      skills: ['Firebase Firestore', 'Cloud Functions', 'Google Apps Script (HTML Service)', 'REST APIs', 'OAuth 2.0 / RBAC', 'Web Workers Ingestion', 'Local-First (IndexedDB)']
+      skills: ['Firebase Firestore', 'Cloud Functions', 'Google Apps Script API', 'REST APIs', 'OAuth 2.0 / RBAC', 'Deterministic Validators']
     },
     {
-      title: 'Systems & Data Intelligence',
+      title: 'Data Intelligence & Analytics',
       icon: Database,
-      skills: ['Python Data Extraction', 'Google Suggestion Tree API', 'Multi-Criteria Decision Algorithms', 'Financial Reconciliation Models', 'Automated SLA Watchdogs']
+      skills: ['Multi-Channel Normalizer', 'Year-over-Year (YoY) Engine', 'Production Forecasting Models', 'Empirical Decision Trees', 'Python Scrapers']
     },
     {
-      title: 'Engineering Rigor & Practices',
+      title: 'Engineering Rigor & Operations',
       icon: ShieldCheck,
-      skills: ['Zero-Conflict Verification', 'Offline-Resilient Failovers', 'Clasp CLI Tooling', 'Clean Architecture', 'WCAG 2.1 AA Accessibility', 'Studio Light Design Systems']
+      skills: ['Zero-Conflict Verification', 'Formula Integrity Locking', 'Talent Pipeline Workflows', 'Clean Architecture', 'Studio Light Design Systems']
     }
   ];
 
   return (
-    <section id="architecture" className="py-16 border-b border-slate-200/60 bg-studio-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="architecture" className="py-16 sm:py-20 border-b border-slate-200/80 bg-slate-50">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-2xl mb-10">
-          <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider font-mono">
+          <span className="text-xs font-mono font-bold text-slate-400 uppercase tracking-wider">
             Core Competencies & Stack
           </span>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight mt-1">
-            Teknologi & Prinsip Arsitektur Rekayasa
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight mt-1.5">
+            Kompetensi Rekayasa & Prinsip Arsitektur
           </h2>
           <p className="text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed">
-            Menghubungkan ketelitian kode frontend dengan ketahanan sistem cloud enterprise, otomasi alur kerja, dan algoritma analitik matematis.
+            Menghubungkan ketelitian kode frontend dengan ketahanan sistem cloud enterprise, otomasi alur kerja operasional, dan algoritma analitik matematis.
           </p>
         </div>
 
@@ -49,10 +49,10 @@ export const TechMatrix: React.FC = () => {
           {quadrants.map(q => {
             const Icon = q.icon;
             return (
-              <div key={q.title} className="bg-white border border-slate-200/90 rounded-2xl p-5 shadow-diffusion">
-                <div className="flex items-center gap-2.5 pb-3 mb-3 border-b border-slate-100">
-                  <div className="p-2 rounded-lg bg-slate-100 text-slate-900">
-                    <Icon className="w-4 h-4 text-brand-600" />
+              <div key={q.title} className="bg-white border border-slate-200/90 rounded-2xl p-6 shadow-subtle hover:border-slate-300 transition-all">
+                <div className="flex items-center gap-3 pb-3 mb-4 border-b border-slate-100">
+                  <div className="p-2 rounded-xl bg-slate-50 border border-slate-200 text-blue-600 shadow-2xs">
+                    <Icon className="w-5 h-5 text-blue-600" />
                   </div>
                   <h3 className="text-sm font-bold text-slate-900 tracking-tight">{q.title}</h3>
                 </div>
@@ -61,7 +61,7 @@ export const TechMatrix: React.FC = () => {
                   {q.skills.map(sk => (
                     <span
                       key={sk}
-                      className="text-xs font-mono px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/80 text-slate-700 font-medium"
+                      className="text-xs font-mono px-2.5 py-1 rounded-md bg-slate-50 border border-slate-200 text-slate-700 font-medium"
                     >
                       {sk}
                     </span>

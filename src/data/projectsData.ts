@@ -10,7 +10,6 @@ export interface EditorialProject {
   keyFeatures: { title: string; description: string }[];
   impactMetrics: { value: string; label: string; description: string }[];
   techStack: string[];
-  uiTheme: 'blue' | 'emerald' | 'indigo' | 'amber';
 }
 
 export const EDITORIAL_PROJECTS: EditorialProject[] = [
@@ -38,12 +37,11 @@ export const EDITORIAL_PROJECTS: EditorialProject[] = [
       { value: '35 Wilayah', label: 'Terdistribusi Rata', description: 'Rotasi tugas terjadwal objektif dan transparan' },
       { value: '<2 Jam', label: 'Penyusunan Jadwal', description: 'Waktu koordinasi bulanan berkurang dari berhari-hari' }
     ],
-    techStack: ['React 19', 'TypeScript', 'Tailwind CSS', 'Cloud Firestore', 'Cloud Functions', 'RBAC Security'],
-    uiTheme: 'emerald'
+    techStack: ['React 19', 'TypeScript', 'Tailwind CSS', 'Cloud Firestore', 'Cloud Functions', 'RBAC Security']
   },
   {
     id: 'marketplace-sales-intelligence',
-    title: 'Marketplace Sales Intelligence & Production Planning Platform',
+    title: 'PGE Intelijen Penjualan Eksekutif & Production Planning Platform',
     category: 'Enterprise Data Analytics & Forecasting',
     roleBadge: 'Internal Systems & Business Intelligence',
     tagline: 'Platform analitik dan agregasi data transaksi penjualan multi-marketplace lintas tahun untuk dasar pengambilan keputusan, proyeksi kuota produksi, dan strategi marketing kantor.',
@@ -65,35 +63,33 @@ export const EDITORIAL_PROJECTS: EditorialProject[] = [
       { value: 'YoY Trends', label: 'Analisis Akurat', description: 'Pemantauan performa bisnis tahunan berbasis data faktual' },
       { value: 'Akurasi Stok', label: 'Perencanaan Produksi', description: 'Meminimalisir overproduction & out-of-stock gudang' }
     ],
-    techStack: ['React 19', 'TypeScript', 'Tailwind CSS', 'Chart.js Data Engine', 'Client-side Ingestion Parser', 'State Analytics'],
-    uiTheme: 'blue'
+    techStack: ['React 19', 'TypeScript', 'Tailwind CSS', 'Chart.js Data Engine', 'Client-side Ingestion Parser', 'State Analytics']
   },
   {
     id: 'enterprise-hr-governance',
-    title: 'Enterprise HR & Operations Governance Portal (Nexus & Talent Pool)',
+    title: 'PGE Talent Pool & Enterprise HR Assessment Portal',
     category: 'Internal Enterprise Portal & HR Tech',
     roleBadge: 'HR & Internal Systems Innovator',
-    tagline: 'Portal sentral untuk tata kelola spreadsheet perusahaan—terutama pengawasan file penilaian kinerja karyawan—serta modul screening Talent Pool rekrutmen end-to-end.',
-    problem: 'Di lingkungan kantor, puluhan Google Sheets operasional dan lembar Penilaian Kinerja Karyawan tersebar tanpa katalogisasi yang jelas, memicu risiko rumus master terhapus oleh staf, link file hilang, dan proses screening berkas kandidat pelamar yang tidak terstruktur.',
-    solution: 'Membangun portal kendali internal satu pintu (single-pane-of-glass) untuk memetakan dan memproteksi seluruh spreadsheet penilaian kinerja aktif, mengawasi kesehatan otomatisasi, serta mengintegrasikan modul Talent Pool untuk screening dan tahapan rekrutmen kandidat secara terpusat.',
+    tagline: 'Portal sentral untuk tata kelola kandidat pelamar, repositori database talent pool terstruktur, dan portal pelaksanaan asesmen on-site pengujian kompetensi.',
+    problem: 'Di lingkungan kantor, puluhan berkas pelamar kerja dan lembar penilaian asesmen kandidat tersebar tanpa repositori yang aman, memicu hilangnya jejak riwayat seleksi pelamar, serta proses penilaian wawancara dan tes kompetensi yang belum terstandarisasi.',
+    solution: 'Membangun portal kendali talent pool satu pintu (single-pane-of-glass) untuk memetakan seluruh database kandidat pelamar, mengelola alur tahapan rekrutmen terpusat, serta mengintegrasikan portal asesmen on-site dengan rubrik penilaian kompetensi terstruktur.',
     architectureDetails: [
-      'Performance Appraisal Sheet Registry: Mengindeks dan memonitor seluruh Google Sheets penilaian kinerja yang sedang aktif dipakai antar departemen.',
-      'Master Formula & Permission Shield: Penguncian integritas formula vital dan pengaturan hak akses divisi untuk mencegah kerusakan data manual.',
-      'End-to-End Talent Pool Pipeline: Modul tracking kandidat terpadu mulai dari screening CV, scoring penilaian tes, hingga tahapan offering.',
-      'Central Operations Navigator: Direktori navigasi cepat ke seluruh program dan alat bantu kerja internal kantor dalam satu dashboard terverifikasi.'
+      'Candidate Repository Database: Mengindeks dan mengorganisir seluruh data kandidat pelamar, riwayat seleksi, dan kualifikasi posisi.',
+      'Structured Assessment Portal: Portal khusus pelaksanaan asesmen on-site untuk pengujian kompetensi teknis dan nilai peran.',
+      'End-to-End Talent Pipeline: Modul tracking kandidat terpadu mulai dari screening CV, scoring asesmen, hingga tahapan penawaran kerja.',
+      'Central Operations Navigator: Direktori navigasi terpadu untuk monitoring status rekrutmen dan evaluasi tim HR secara real-time.'
     ],
     keyFeatures: [
-      { title: 'Active Performance Sheet Registry', description: 'Katalog status seluruh lembar kerja evaluasi staf lengkap dengan penanggung jawab divisi dan proteksi formula.' },
-      { title: 'Talent Pool Screening Board', description: 'Papan manajemen pelamar interaktif dengan status tahapan rekrutmen, catatan wawancara, dan skor kecocokan profil.' },
-      { title: 'Internal Tooling Directory', description: 'Satu pintu akses untuk seluruh tautan kerja resmi kantor guna mengeliminasi kebingungan link antar karyawan.' }
+      { title: 'Candidate Repository Hub', description: 'Database terpusat seluruh profil pelamar kerja lengkap dengan status seleksi dan catatan kualifikasi.' },
+      { title: 'On-Site Assessment Portal', description: 'Portal interaktif pelaksanaan asesmen kandidat dengan form pengujian kompetensi langsung di tempat.' },
+      { title: 'Structured Scoring Rubric', description: 'Instrumen rubrik penilaian objektif dengan bobot kompetensi terukur untuk rekomendasi hiring.' }
     ],
     impactMetrics: [
-      { value: '100%', label: 'Sentralisasi Aset', description: 'Seluruh spreadsheet penilaian kinerja terdata dalam 1 portal' },
-      { value: 'Zero Data Loss', label: 'Proteksi Formula', description: 'Mencegah insiden penimpaan rumus master secara manual' },
-      { value: 'End-to-End', label: 'Talent Pipeline', description: 'Screening pelamar lebih cepat, terdokumentasi rapi' }
+      { value: '100%', label: 'Sentralisasi Talent', description: 'Seluruh database kandidat terdata dalam 1 repositori' },
+      { value: 'Terstandar', label: 'Portal Asesmen', description: 'Pelaksanaan uji kompetensi on-site terstruktur rapi' },
+      { value: 'End-to-End', label: 'Alur Rekrutmen', description: 'Screening hingga offering terdokumentasi akurat' }
     ],
-    techStack: ['React 19', 'TypeScript', 'Tailwind CSS', 'Google Apps Script API', 'OAuth 2.0', 'RBAC Architecture'],
-    uiTheme: 'indigo'
+    techStack: ['React 19', 'TypeScript', 'Tailwind CSS', 'Cloud Firestore', 'Assessment Engine', 'RBAC Architecture']
   },
   {
     id: 'methodology-iq',
@@ -119,7 +115,6 @@ export const EDITORIAL_PROJECTS: EditorialProject[] = [
       { value: 'Interaktif', label: 'Visual Radar', description: 'Memudahkan pemahaman konsep manajemen proyek yang kompleks' },
       { value: 'Konsensus', label: 'Keputusan Cepat', description: 'Membantu tim memilih metodologi yang tepat dalam 1 sesi' }
     ],
-    techStack: ['Modern JavaScript', 'TypeScript', 'Tailwind CSS', 'Chart.js Radar Engine', 'GSAP Animation'],
-    uiTheme: 'amber'
+    techStack: ['Modern JavaScript', 'TypeScript', 'Tailwind CSS', 'Chart.js Radar Engine', 'GSAP Animation']
   }
 ];
