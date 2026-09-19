@@ -126,10 +126,10 @@ const SCREENS_BY_PROJECT: Record<string, ScreenTab[]> = {
     },
     { 
       id: 'screen-5', 
-      title: '5. Matriks Evaluasi Pasca-Tes', 
-      subtitle: 'Post-Test Scoring & Fit Decision Matrix', 
-      badge: 'Post-Test Matrix',
-      description: 'Matriks hasil pengujian otomatis seketika kandidat submit tes: komparasi skor teknis vs culture fit, kuadran rekomendasi, dan scorecard terukur.'
+      title: '5. Pentagon Matrix & Hasil Tes Asesmen', 
+      subtitle: 'Pentagon Big Five + DISC + Logika Kognitif', 
+      badge: 'Pentagon Matrix',
+      description: 'Laporan komprehensif pasca-tes: Pentagon Matrix (IPIP Big Five), grafik garis profil DISC (D-I-S-C), dan diagram batang akurasi penalaran logika & kognitif bisnis praktis.'
     },
   ],
   'methodology-iq': [
