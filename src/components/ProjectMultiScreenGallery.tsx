@@ -119,17 +119,31 @@ const SCREENS_BY_PROJECT: Record<string, ScreenTab[]> = {
     },
     { 
       id: 'screen-4', 
-      title: '4. Portal Asesmen On-Site', 
-      subtitle: 'Pelaksanaan Uji Kompetensi Live', 
-      badge: 'Live Test Engine',
-      description: 'Portal pelaksanaan asesmen on-site dengan modul soal teknis, timer terintegrasi, dan penguncian sesi ujian anti-cheat.'
+      title: '4. Registrasi & Onboarding Kandidat', 
+      subtitle: 'Direct Candidate Enrollment Portal', 
+      badge: 'Candidate Enrollment',
+      description: 'Formulir registrasi dan orientasi kandidat terpadu dengan validasi nomor induk, posisi lamaran, dan penugasan token asesmen.'
     },
     { 
       id: 'screen-5', 
       title: '5. Pentagon Matrix & Hasil Tes Asesmen', 
       subtitle: 'Pentagon Big Five + DISC + Logika Kognitif', 
       badge: 'Pentagon Matrix',
-      description: 'Laporan komprehensif pasca-tes: Pentagon Matrix (IPIP Big Five), grafik garis profil DISC (D-I-S-C), dan diagram batang akurasi penalaran logika & kognitif bisnis praktis.'
+      description: 'Laporan komprehensif pasca-tes: Pentagon Matrix (IPIP Big Five 5-axis), grafik garis profil DISC (D-I-S-C), dan diagram batang akurasi penalaran logika & kognitif bisnis praktis.'
+    },
+    { 
+      id: 'screen-6', 
+      title: '6. Live Assessment Test Runner', 
+      subtitle: 'Engine Ujian Online Anti-Cheat & Timer', 
+      badge: 'Live Test Engine',
+      description: 'Runner ujian langsung dengan countdown timer presisi, modul psikotes (Big Five 50 butir, DISC 24 butir, Logika 15 butir), dan pencegahan navigasi liar.'
+    },
+    { 
+      id: 'screen-7', 
+      title: '7. Leaderboard & Hasil Asesmen Kandidat', 
+      subtitle: 'Tabel Rekomendasi & Profil Terintegrasi', 
+      badge: 'Decision Dashboard',
+      description: 'Dashboard rekapitulasi hasil seluruh kandidat yang telah menyelesaikan tes lengkap dengan badge profil DISC, skor logika, dan tombol inspeksi Pentagon Matrix instan.'
     },
   ],
   'methodology-iq': [
@@ -225,7 +239,7 @@ export const ProjectMultiScreenGallery: React.FC<Props> = ({ projectId, classNam
           </div>
           <div className="flex items-center gap-1.5">
             <span className="text-[10px] font-mono font-bold text-white bg-black px-2 py-0.5 border border-black">
-              DISP: {activeScreenIndex + 1}/5
+              DISP: {activeScreenIndex + 1}/{screens.length}
             </span>
             <button
               onClick={() => setIsLightboxOpen(true)}
@@ -239,7 +253,7 @@ export const ProjectMultiScreenGallery: React.FC<Props> = ({ projectId, classNam
         </div>
 
         {/* Tactile Screen Selector Tabs */}
-        <div className="grid grid-cols-5 gap-1">
+        <div className={`grid gap-1 ${screens.length === 7 ? 'grid-cols-2 sm:grid-cols-4 md:grid-cols-7' : 'grid-cols-2 sm:grid-cols-3 md:grid-cols-5'}`}>
           {screens.map((screen, idx) => {
             const isActive = idx === activeScreenIndex;
             return (
