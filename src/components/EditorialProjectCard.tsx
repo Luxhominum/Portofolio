@@ -9,11 +9,8 @@ import {
   Users, 
   Compass,
   Briefcase,
-  FileSpreadsheet,
   Zap,
   ArrowRight,
-  ChevronLeft,
-  ChevronRight,
   ExternalLink,
   SlidersHorizontal
 } from 'lucide-react';
@@ -34,21 +31,21 @@ export const EditorialProjectCard: React.FC<Props> = ({ project, index }) => {
   const [dispatched, setDispatched] = useState<boolean>(false);
 
   const baseTabs: { id: InfoTab; label: string; icon: React.ReactNode }[] = [
-    { id: 'solution', label: '01 // PROBLEM & SOLUTION', icon: <AlertCircle className="w-3.5 h-3.5" /> },
-    { id: 'transformation', label: '02 // BEFORE VS AFTER', icon: <Zap className="w-3.5 h-3.5" /> },
+    { id: 'solution', label: '01 // SPECS', icon: <AlertCircle className="w-3 h-3" /> },
+    { id: 'transformation', label: '02 // IMPACT', icon: <Zap className="w-3 h-3" /> },
   ];
 
   if (isHRProject) {
     baseTabs.push({ 
       id: 'matrix', 
-      label: '★ 03 // POST-TEST MATRIX', 
-      icon: <SlidersHorizontal className="w-3.5 h-3.5 text-orange-600" /> 
+      label: '★ 03 // MATRIX', 
+      icon: <SlidersHorizontal className="w-3 h-3 text-orange-600" /> 
     });
   }
 
   baseTabs.push(
-    { id: 'architecture', label: isHRProject ? '04 // ARCHITECTURE' : '03 // ARCHITECTURE', icon: <Layers className="w-3.5 h-3.5" /> },
-    { id: 'metrics', label: isHRProject ? '05 // IMPACT METRICS' : '04 // IMPACT METRICS', icon: <TrendingUp className="w-3.5 h-3.5" /> }
+    { id: 'architecture', label: isHRProject ? '04 // ARCH' : '03 // ARCH', icon: <Layers className="w-3 h-3" /> },
+    { id: 'metrics', label: isHRProject ? '05 // METRICS' : '04 // METRICS', icon: <TrendingUp className="w-3 h-3" /> }
   );
 
   const tabs = baseTabs;
@@ -56,15 +53,15 @@ export const EditorialProjectCard: React.FC<Props> = ({ project, index }) => {
   const getIcon = () => {
     switch (project.id) {
       case 'community-scheduling':
-        return <Calendar className="w-5 h-5 text-orange-600" />;
+        return <Calendar className="w-4 h-4 text-orange-600" />;
       case 'marketplace-sales-intelligence':
-        return <BarChart3 className="w-5 h-5 text-orange-600" />;
+        return <BarChart3 className="w-4 h-4 text-orange-600" />;
       case 'enterprise-hr-governance':
-        return <Users className="w-5 h-5 text-orange-600" />;
+        return <Users className="w-4 h-4 text-orange-600" />;
       case 'methodology-iq':
-        return <Compass className="w-5 h-5 text-orange-600" />;
+        return <Compass className="w-4 h-4 text-orange-600" />;
       default:
-        return <Briefcase className="w-5 h-5 text-orange-600" />;
+        return <Briefcase className="w-4 h-4 text-orange-600" />;
     }
   };
 
@@ -81,18 +78,6 @@ export const EditorialProjectCard: React.FC<Props> = ({ project, index }) => {
     }
   };
 
-  const currentTabIndex = tabs.findIndex(t => t.id === activeTab);
-
-  const handleNextTab = () => {
-    const nextIdx = (currentTabIndex + 1) % tabs.length;
-    setActiveTab(tabs[nextIdx].id);
-  };
-
-  const handlePrevTab = () => {
-    const prevIdx = (currentTabIndex - 1 + tabs.length) % tabs.length;
-    setActiveTab(tabs[prevIdx].id);
-  };
-
   const handleSimulatedDispatch = () => {
     setDispatched(true);
     setTimeout(() => setDispatched(false), 3500);
@@ -103,31 +88,23 @@ export const EditorialProjectCard: React.FC<Props> = ({ project, index }) => {
   return (
     <article 
       id={project.id}
-      className="bg-white border-2 border-black p-5 sm:p-8 font-sans shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] transition-transform hover:-translate-x-0.5 hover:-translate-y-0.5"
+      className="bg-white border-2 border-black p-4 sm:p-6 font-sans shadow-[5px_5px_0px_0px_rgba(0,0,0,1)]"
     >
       {/* Header Bar */}
-      <div className="flex flex-wrap items-center justify-between gap-3 pb-5 border-b-2 border-black">
-        <div className="flex items-center gap-3.5">
-          <div className="w-10 h-10 sm:w-12 sm:h-12 bg-black text-white border-2 border-black flex items-center justify-center shrink-0 shadow-[2px_2px_0px_0px_rgba(255,85,0,1)]">
+      <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b-2 border-black">
+        <div className="flex items-center gap-3">
+          <div className="w-9 h-9 bg-black text-white border-2 border-black flex items-center justify-center shrink-0 shadow-[2px_2px_0px_0px_rgba(255,85,0,1)]">
             {getIcon()}
           </div>
           <div>
-            <div className="flex flex-wrap items-center gap-2 font-mono">
-              <span className="text-xs font-black text-orange-600">STUDIO // 0{index + 1}</span>
-              <span className="px-2 py-0.5 text-[10px] font-bold uppercase bg-orange-500 text-white">
-                {project.category}
-              </span>
-              <span className="px-2 py-0.5 text-[10px] font-bold uppercase bg-zinc-100 text-black border border-black">
-                {project.roleBadge}
-              </span>
-              {isHRProject && (
-                <span className="px-2 py-0.5 text-[10px] font-bold uppercase bg-black text-orange-400 border border-orange-500 animate-pulse flex items-center gap-1">
-                  <span className="w-1.5 h-1.5 bg-orange-500 rounded-full"></span>
-                  HIGHLIGHT: POST-TEST DECISION MATRIX
-                </span>
-              )}
+            <div className="flex flex-wrap items-center gap-2 font-mono text-[10px] text-zinc-600 uppercase font-bold">
+              <span className="text-orange-600 font-black">STUDIO // 0{index + 1}</span>
+              <span>•</span>
+              <span className="text-black">{project.category}</span>
+              <span>•</span>
+              <span className="text-zinc-500">{project.roleBadge}</span>
             </div>
-            <h3 className="text-xl sm:text-3xl font-black text-black tracking-tight uppercase mt-1">
+            <h3 className="text-lg sm:text-2xl font-black text-black tracking-tight uppercase mt-0.5">
               {project.title}
             </h3>
           </div>
@@ -138,68 +115,32 @@ export const EditorialProjectCard: React.FC<Props> = ({ project, index }) => {
             href={liveUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 font-mono text-xs font-bold uppercase bg-black hover:bg-orange-600 text-white transition-all shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] cursor-pointer active:translate-x-0.5 active:translate-y-0.5"
+            className="inline-flex items-center gap-1 px-3 py-1.5 font-mono text-xs font-bold uppercase bg-black hover:bg-orange-600 text-white transition-all shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] cursor-pointer active:translate-x-0.5 active:translate-y-0.5"
           >
-            <span>LIVE SYSTEM &rarr;</span>
+            <span>LIVE APP &rarr;</span>
             <ExternalLink className="w-3 h-3 text-orange-400" />
           </a>
         )}
       </div>
 
-      {/* Main Tagline Banner */}
-      <div className="my-4 text-xs sm:text-sm text-zinc-800 font-medium leading-relaxed">
-        {project.tagline}
-      </div>
-
-      {/* Synchronized Split-Studio Grid (Left: Information Slider, Right: Chromium Screen) */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch pt-2">
+      {/* Synchronized Split-Studio Grid */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch pt-4">
         
-        {/* ================================================================= */}
-        {/* LEFT PANE: Interactive Information Slider Tabs (col-span-5)        */}
-        {/* ================================================================= */}
-        <div className="lg:col-span-5 flex flex-col justify-between bg-zinc-50 border-2 border-black p-4 sm:p-5 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]">
+        {/* LEFT PANE: Interactive Spec & Insight Slider (col-span-5) */}
+        <div className="lg:col-span-5 flex flex-col justify-between bg-zinc-50 border-2 border-black p-4 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
           
           <div>
-            {/* Info Slider Navigation Bar */}
-            <div className="flex items-center justify-between gap-2 pb-3 mb-4 border-b-2 border-black">
-              <div className="flex items-center gap-1.5 text-xs font-black text-black font-mono uppercase tracking-wider">
-                <SlidersHorizontal className="w-3.5 h-3.5 text-orange-600" />
-                <span>SPEC // INSIGHTS</span>
-              </div>
-
-              {/* Prev / Next Slide Switcher */}
-              <div className="flex items-center gap-1 font-mono">
-                <span className="text-[10px] font-bold text-black mr-1.5">
-                  PAGE 0{currentTabIndex + 1}/0{tabs.length}
-                </span>
-                <button
-                  onClick={handlePrevTab}
-                  className="w-7 h-7 bg-white border border-black hover:bg-black hover:text-white flex items-center justify-center text-black transition-colors cursor-pointer"
-                  title="Insight Sebelumnya"
-                >
-                  <ChevronLeft className="w-3.5 h-3.5" />
-                </button>
-                <button
-                  onClick={handleNextTab}
-                  className="w-7 h-7 bg-white border border-black hover:bg-black hover:text-white flex items-center justify-center text-black transition-colors cursor-pointer"
-                  title="Insight Berikutnya"
-                >
-                  <ChevronRight className="w-3.5 h-3.5" />
-                </button>
-              </div>
-            </div>
-
-            {/* Sub-Tab Selector Pills */}
-            <div className={`grid ${isHRProject ? 'grid-cols-2 sm:grid-cols-3' : 'grid-cols-2'} gap-1.5 mb-4 font-mono`}>
+            {/* Top Sub-Tab Selector Pills */}
+            <div className={`grid ${isHRProject ? 'grid-cols-3 sm:grid-cols-5' : 'grid-cols-2 sm:grid-cols-4'} gap-1 mb-3.5 font-mono`}>
               {tabs.map((tab) => {
                 const isActive = activeTab === tab.id;
                 return (
                   <button
                     key={tab.id}
                     onClick={() => setActiveTab(tab.id)}
-                    className={`flex items-center gap-1.5 px-2 py-1.5 text-[9.5px] font-bold uppercase transition-all duration-150 cursor-pointer border ${
+                    className={`flex items-center justify-center gap-1 p-1 text-[9px] font-bold uppercase transition-all duration-150 cursor-pointer border ${
                       isActive
-                        ? 'bg-black text-white border-black shadow-[2px_2px_0px_0px_rgba(255,85,0,1)]'
+                        ? 'bg-black text-white border-black shadow-[1.5px_1.5px_0px_0px_rgba(255,85,0,1)]'
                         : tab.id === 'matrix'
                         ? 'bg-orange-100 text-orange-950 border-orange-400 hover:bg-orange-200'
                         : 'bg-white text-black border-black/40 hover:bg-zinc-200'
@@ -208,179 +149,125 @@ export const EditorialProjectCard: React.FC<Props> = ({ project, index }) => {
                     <span className={isActive ? 'text-orange-400' : 'text-black'}>
                       {tab.icon}
                     </span>
-                    <span className="truncate">{tab.label}</span>
+                    <span className="truncate">{tab.label.split('// ')[1] || tab.label}</span>
                   </button>
                 );
               })}
             </div>
 
             {/* Active Slide Content */}
-            <div className="min-h-[260px] flex flex-col justify-start animate-fadeIn">
+            <div className="min-h-[220px] flex flex-col justify-start animate-fadeIn">
               
-              {/* TAB 1: Problem & Solution */}
+              {/* TAB 1: Specs (Problem & Solution) */}
               {activeTab === 'solution' && (
-                <div className="space-y-3">
-                  <div className="p-3.5 bg-white border-2 border-black">
-                    <div className="flex items-center gap-1.5 text-xs font-mono font-black text-black uppercase mb-1.5">
-                      <AlertCircle className="w-3.5 h-3.5 text-orange-600" />
-                      <span>Masalah Operasional Riil</span>
+                <div className="space-y-2.5">
+                  <div className="p-3 bg-white border-2 border-black">
+                    <div className="text-[10px] font-mono font-black text-zinc-500 uppercase mb-1 flex items-center gap-1">
+                      <AlertCircle className="w-3 h-3 text-orange-600" />
+                      <span>OPERATIONAL BOTTLENECK</span>
                     </div>
-                    <p className="text-xs text-zinc-700 leading-relaxed font-sans">
+                    <p className="text-xs text-zinc-800 leading-relaxed font-sans font-medium">
                       {project.problem}
                     </p>
                   </div>
 
-                  <div className="p-3.5 bg-orange-50 border-2 border-orange-500">
-                    <div className="flex items-center gap-1.5 text-xs font-mono font-black text-orange-900 uppercase mb-1.5">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-orange-600" />
-                      <span>Solusi Rekayasa Sistem</span>
+                  <div className="p-3 bg-orange-50 border-2 border-orange-500">
+                    <div className="text-[10px] font-mono font-black text-orange-950 uppercase mb-1 flex items-center gap-1">
+                      <CheckCircle2 className="w-3 h-3 text-orange-600" />
+                      <span>ENGINEERING SOLUTION</span>
                     </div>
-                    <p className="text-xs text-zinc-800 leading-relaxed font-sans">
+                    <p className="text-xs text-zinc-900 leading-relaxed font-sans font-medium">
                       {project.solution}
                     </p>
                   </div>
                 </div>
               )}
 
-              {/* TAB: Post-Test Candidate Matrix Feature Spotlight (for HR project) */}
+              {/* TAB: Post-Test Candidate Matrix Feature Spotlight */}
               {activeTab === 'matrix' && isHRProject && (
-                <div className="space-y-3 font-mono animate-fadeIn">
-                  <div className="p-3 bg-black text-white border-2 border-black">
-                    <div className="flex items-center justify-between text-[10px] pb-1.5 mb-2 border-b border-zinc-700">
+                <div className="space-y-2 font-mono animate-fadeIn">
+                  <div className="p-2.5 bg-black text-white border border-black">
+                    <div className="flex items-center justify-between text-[9px] pb-1 mb-1.5 border-b border-zinc-700">
                       <span className="text-orange-400 font-bold uppercase flex items-center gap-1">
                         <span className="w-1.5 h-1.5 bg-orange-500 rounded-full animate-ping"></span>
-                        POST-TEST SCORING DISPATCH
+                        POST-TEST MATRIX SIMULATOR
                       </span>
-                      <span className="text-zinc-300">TEST STATUS: SUBMITTED (100%)</span>
+                      <span className="text-zinc-400">SCORE: {simulatedScore}/100</span>
                     </div>
 
-                    {/* Candidate Matrix Score Summary */}
-                    <div className="grid grid-cols-3 gap-2 text-center my-2">
-                      <div className="p-1.5 bg-zinc-900 border border-zinc-700">
-                        <div className="text-[9px] text-zinc-400 uppercase">Tech Score</div>
-                        <div className="text-sm font-black text-orange-400">{simulatedScore}%</div>
-                      </div>
-                      <div className="p-1.5 bg-zinc-900 border border-zinc-700">
-                        <div className="text-[9px] text-zinc-400 uppercase">Logic / Speed</div>
-                        <div className="text-sm font-black text-white">88% (24m)</div>
-                      </div>
-                      <div className="p-1.5 bg-zinc-900 border border-zinc-700">
-                        <div className="text-[9px] text-zinc-400 uppercase">Decision</div>
-                        <div className="text-xs font-black text-green-400">
-                          {simulatedScore >= 85 ? 'FAST-TRACK' : simulatedScore >= 70 ? 'SPECIALIST' : 'TALENT POOL'}
-                        </div>
-                      </div>
-                    </div>
+                    <input 
+                      type="range" 
+                      min="50" 
+                      max="98" 
+                      value={simulatedScore}
+                      onChange={(e) => setSimulatedScore(Number(e.target.value))}
+                      className="w-full h-1 bg-zinc-700 accent-orange-500 cursor-pointer mb-2"
+                    />
 
-                    {/* Interactive Score Simulation Slider */}
-                    <div className="pt-2 border-t border-zinc-800">
-                      <div className="flex justify-between text-[9px] text-zinc-400 mb-1">
-                        <span>SIMULASIKAN SKOR TES KANDIDAT:</span>
-                        <span className="text-orange-400 font-bold">{simulatedScore}/100</span>
+                    <div className="grid grid-cols-2 gap-1 text-[9px]">
+                      <div className={`p-1.5 border transition-all ${
+                        simulatedScore >= 85 
+                          ? 'bg-orange-500 text-white border-white font-black' 
+                          : 'bg-zinc-900 border-zinc-700 text-zinc-400'
+                      }`}>
+                        <div className="font-bold">Q1: FAST-TRACK</div>
+                        <div className="text-[8px] opacity-90">High Score &rarr; Offer Langsung</div>
                       </div>
-                      <input 
-                        type="range" 
-                        min="50" 
-                        max="98" 
-                        value={simulatedScore}
-                        onChange={(e) => setSimulatedScore(Number(e.target.value))}
-                        className="w-full h-1 bg-zinc-700 accent-orange-500 cursor-pointer"
-                      />
+
+                      <div className={`p-1.5 border transition-all ${
+                        simulatedScore >= 70 && simulatedScore < 85
+                          ? 'bg-orange-500 text-white border-white font-black' 
+                          : 'bg-zinc-900 border-zinc-700 text-zinc-400'
+                      }`}>
+                        <div className="font-bold">Q2: SPECIALIST</div>
+                        <div className="text-[8px] opacity-90">Med Score &rarr; Lead Interview</div>
+                      </div>
                     </div>
                   </div>
 
-                  {/* 4-Quadrant Matrix Output */}
-                  <div className="p-3 bg-white border-2 border-black text-xs font-sans">
-                    <div className="font-mono font-bold text-[10px] text-zinc-700 uppercase tracking-wider mb-2 flex items-center justify-between">
-                      <span>MATRIKS KUADRAN REKOMENDASI HIRING:</span>
-                      <span className="text-orange-600 font-bold">AUTOMATED ENGINE</span>
-                    </div>
-
-                    <div className="grid grid-cols-2 gap-1.5 font-mono text-[10px]">
-                      <div className={`p-2 border transition-all ${
-                        simulatedScore >= 85 
-                          ? 'bg-orange-500 text-white border-black font-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]' 
-                          : 'bg-zinc-50 border-zinc-200 text-zinc-400'
-                      }`}>
-                        <div className="font-bold">Q1: FAST-TRACK HIRE</div>
-                        <div className="text-[8.5px] opacity-90 mt-0.5">High Tech + High Fit &rarr; Offer Brief Langsung</div>
-                      </div>
-
-                      <div className={`p-2 border transition-all ${
-                        simulatedScore >= 70 && simulatedScore < 85
-                          ? 'bg-orange-500 text-white border-black font-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]' 
-                          : 'bg-zinc-50 border-zinc-200 text-zinc-400'
-                      }`}>
-                        <div className="font-bold">Q2: SPECIALIST ROLE</div>
-                        <div className="text-[8.5px] opacity-90 mt-0.5">High Tech + Med Fit &rarr; Interview Lead Tim</div>
-                      </div>
-
-                      <div className={`p-2 border transition-all ${
-                        simulatedScore < 70
-                          ? 'bg-black text-white border-black font-black shadow-[2px_2px_0px_0px_rgba(255,85,0,1)]' 
-                          : 'bg-zinc-50 border-zinc-200 text-zinc-400'
-                      }`}>
-                        <div className="font-bold">Q3: TALENT ARCHIVE</div>
-                        <div className="text-[8.5px] opacity-90 mt-0.5">Below Threshold &rarr; Simpan Database Pool</div>
-                      </div>
-
-                      <div className="p-2 border bg-zinc-50 border-zinc-200 text-zinc-500">
-                        <div className="font-bold">Q4: ASSOCIATE / INTERN</div>
-                        <div className="text-[8.5px] opacity-90 mt-0.5">High Potential &rarr; Program Mentorship</div>
-                      </div>
-                    </div>
-
-                    {/* Instant Action Trigger */}
-                    <div className="mt-3 pt-2.5 border-t border-zinc-200 flex items-center justify-between">
-                      <span className="text-[10px] text-zinc-600 font-mono">
-                        {dispatched ? '✅ WhatsApp Terjadwal Otomatis!' : 'Aksi Otomatis Pasca-Tes:'}
-                      </span>
-                      <button
-                        onClick={handleSimulatedDispatch}
-                        className="px-2.5 py-1 bg-black hover:bg-orange-600 text-white text-[10px] font-mono font-bold uppercase transition-colors cursor-pointer"
-                      >
-                        {dispatched ? 'TERDISPATCH' : 'DISPATCH UNDANGAN WA'}
-                      </button>
-                    </div>
+                  <div className="pt-1 flex items-center justify-between">
+                    <span className="text-[9.5px] text-zinc-600 font-mono">
+                      {dispatched ? '✅ WhatsApp Terkirim!' : 'Aksi Otomatis:'}
+                    </span>
+                    <button
+                      onClick={handleSimulatedDispatch}
+                      className="px-2 py-0.5 bg-black hover:bg-orange-600 text-white text-[9.5px] font-mono font-bold uppercase transition-colors cursor-pointer"
+                    >
+                      {dispatched ? 'TERKIRIM' : 'DISPATCH WA'}
+                    </button>
                   </div>
                 </div>
               )}
 
-              {/* TAB 2: Before vs After Transformation */}
+              {/* TAB 2: Transformation / Impact */}
               {activeTab === 'transformation' && project.beforeAfter && (
-                <div className="space-y-2.5 font-mono">
-                  <div className="p-2.5 bg-black text-white text-[11px] font-bold uppercase flex items-center justify-between border border-black">
-                    <span className="flex items-center gap-1.5">
-                      <Zap className="w-3.5 h-3.5 text-orange-500" />
-                      <span>TRANSFORMATION OUTCOME:</span>
-                    </span>
+                <div className="space-y-2 font-mono">
+                  <div className="p-2 bg-black text-white text-[10px] font-bold uppercase flex items-center justify-between border border-black">
                     <span className="text-orange-400 font-black">{project.beforeAfter.roiHighlight}</span>
                   </div>
 
-                  <div className="p-3 bg-white border-2 border-black text-xs font-sans">
-                    <div className="flex items-center gap-1.5 font-mono font-bold text-zinc-600 mb-2 uppercase text-[10px] tracking-wider">
-                      <FileSpreadsheet className="w-3.5 h-3.5 text-zinc-500" />
-                      <span>Sebelumnya (Era Manual Spreadsheet)</span>
+                  <div className="p-2.5 bg-white border border-black text-xs font-sans">
+                    <div className="font-mono font-bold text-zinc-500 mb-1 text-[9.5px] uppercase">
+                      Manual Spreadsheet:
                     </div>
-                    <ul className="space-y-1.5 text-zinc-600 text-[11px]">
+                    <ul className="space-y-1 text-zinc-600 text-[11px]">
                       {project.beforeAfter.before.map((b, i) => (
-                        <li key={i} className="flex items-start gap-1.5">
-                          <span className="text-orange-600 font-mono font-bold">&times;</span>
+                        <li key={i} className="flex items-start gap-1">
+                          <span className="text-orange-600 font-bold">&times;</span>
                           <span>{b}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
 
-                  <div className="p-3 bg-orange-50 border-2 border-orange-500 text-xs font-sans">
-                    <div className="flex items-center gap-1.5 font-mono font-black text-orange-950 mb-2 uppercase text-[10px] tracking-wider">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-orange-600" />
-                      <span>Sesudahnya (Sistem Terotomasi)</span>
+                  <div className="p-2.5 bg-orange-50 border border-orange-500 text-xs font-sans">
+                    <div className="font-mono font-bold text-orange-950 mb-1 text-[9.5px] uppercase">
+                      Automated Web System:
                     </div>
-                    <ul className="space-y-1.5 text-zinc-900 text-[11px] font-medium">
+                    <ul className="space-y-1 text-zinc-900 text-[11px] font-medium">
                       {project.beforeAfter.after.map((a, i) => (
-                        <li key={i} className="flex items-start gap-1.5">
-                          <ArrowRight className="w-3.5 h-3.5 text-orange-600 shrink-0 mt-0.5" />
+                        <li key={i} className="flex items-start gap-1">
+                          <ArrowRight className="w-3 h-3 text-orange-600 shrink-0 mt-0.5" />
                           <span>{a}</span>
                         </li>
                       ))}
@@ -391,16 +278,16 @@ export const EditorialProjectCard: React.FC<Props> = ({ project, index }) => {
 
               {/* TAB 3: System Architecture Details */}
               {activeTab === 'architecture' && (
-                <div className="space-y-2 max-h-[280px] overflow-y-auto pr-1">
+                <div className="space-y-1.5 max-h-[220px] overflow-y-auto pr-1">
                   {project.architectureDetails.map((arch, i) => {
                     const [title, ...desc] = arch.split(':');
                     return (
-                      <div key={i} className="p-2.5 bg-white border border-black text-xs">
-                        <div className="font-mono font-black text-black text-[11px] uppercase mb-0.5 flex items-center gap-1.5">
-                          <span className="w-2 h-2 bg-orange-500 shrink-0"></span>
+                      <div key={i} className="p-2 bg-white border border-black text-xs">
+                        <div className="font-mono font-black text-black text-[10px] uppercase mb-0.5 flex items-center gap-1">
+                          <span className="w-1.5 h-1.5 bg-orange-500 shrink-0"></span>
                           <span>{title}</span>
                         </div>
-                        <p className="text-zinc-700 text-[11px] pl-3.5 leading-relaxed font-sans">
+                        <p className="text-zinc-700 text-[10.5px] pl-2.5 leading-snug font-sans">
                           {desc.join(':')}
                         </p>
                       </div>
@@ -411,18 +298,18 @@ export const EditorialProjectCard: React.FC<Props> = ({ project, index }) => {
 
               {/* TAB 4: Verified Impact Metrics */}
               {activeTab === 'metrics' && (
-                <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1 gap-2.5 font-mono">
+                <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1 gap-2 font-mono">
                   {project.impactMetrics.map((metric, i) => (
-                    <div key={i} className="p-3 bg-white border-2 border-black flex items-center justify-between gap-3 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+                    <div key={i} className="p-2.5 bg-white border border-black flex items-center justify-between gap-2">
                       <div>
-                        <div className="text-[10px] font-black text-orange-600 uppercase tracking-wider">
+                        <div className="text-[9.5px] font-black text-orange-600 uppercase">
                           {metric.label}
                         </div>
-                        <div className="text-[11px] text-zinc-600 mt-0.5 leading-tight font-sans">
+                        <div className="text-[10px] text-zinc-600 leading-tight font-sans">
                           {metric.description}
                         </div>
                       </div>
-                      <div className="text-xl sm:text-2xl font-black text-black tracking-tight shrink-0">
+                      <div className="text-lg font-black text-black tracking-tight shrink-0">
                         {metric.value}
                       </div>
                     </div>
@@ -433,13 +320,12 @@ export const EditorialProjectCard: React.FC<Props> = ({ project, index }) => {
             </div>
           </div>
 
-          {/* Left Footer: Tech Stack Pills */}
-          <div className="pt-3 mt-4 border-t-2 border-black flex flex-wrap items-center gap-1.5 font-mono">
-            <span className="text-[10px] font-bold text-black uppercase mr-1">STACK:</span>
+          {/* Left Footer: Tech Stack */}
+          <div className="pt-2 mt-3 border-t border-black flex flex-wrap items-center gap-1 font-mono">
             {project.techStack.map((tech) => (
               <span 
                 key={tech}
-                className="px-2 py-0.5 bg-white text-black text-[10px] font-bold border border-black shadow-[1px_1px_0px_0px_rgba(0,0,0,1)]"
+                className="px-1.5 py-0.5 bg-white text-black text-[9px] font-bold border border-black"
               >
                 {tech}
               </span>
@@ -448,9 +334,7 @@ export const EditorialProjectCard: React.FC<Props> = ({ project, index }) => {
 
         </div>
 
-        {/* ================================================================= */}
-        {/* RIGHT PANE: Live Chromium Multi-Screen Viewport (col-span-7)       */}
-        {/* ================================================================= */}
+        {/* RIGHT PANE: Live Chromium Multi-Screen Viewport (col-span-7) */}
         <div className="lg:col-span-7 flex flex-col justify-center">
           <ProjectMultiScreenGallery 
             projectId={project.id}

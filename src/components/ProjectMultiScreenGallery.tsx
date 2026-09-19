@@ -225,21 +225,20 @@ export const ProjectMultiScreenGallery: React.FC<Props> = ({ projectId, classNam
   return (
     <div className={`bg-white border-2 border-black overflow-hidden font-mono shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] ${className}`}>
       
-      {/* Gallery Header Bar: Hardware Aesthetic */}
-      <div className="bg-zinc-100 border-b-2 border-black p-2.5 sm:p-3">
-        <div className="flex flex-wrap items-center justify-between gap-2 mb-2 px-1">
+      {/* Gallery Header Bar: Clean Tactile Bar */}
+      <div className="bg-zinc-100 border-b-2 border-black p-2">
+        <div className="flex items-center justify-between gap-2 mb-1.5 px-1">
           <div className="flex items-center gap-1.5">
-            <span className="w-2.5 h-2.5 bg-black"></span>
-            <span className="w-2.5 h-2.5 bg-orange-500"></span>
-            <span className="w-2.5 h-2.5 bg-zinc-300"></span>
+            <span className="w-2 h-2 bg-black"></span>
+            <span className="w-2 h-2 bg-orange-500"></span>
             <span className="text-[10px] font-mono text-black font-black uppercase tracking-wider ml-1 flex items-center gap-1">
               <Terminal className="w-3 h-3 text-orange-600" />
-              CHROMIUM VIEWPORT // 2880×1800 RETINA
+              RETINA VIEWPORT
             </span>
           </div>
           <div className="flex items-center gap-1.5">
             <span className="text-[10px] font-mono font-bold text-white bg-black px-2 py-0.5 border border-black">
-              DISP: {activeScreenIndex + 1}/{screens.length}
+              {activeScreenIndex + 1} / {screens.length}
             </span>
             <button
               onClick={() => setIsLightboxOpen(true)}
@@ -260,15 +259,15 @@ export const ProjectMultiScreenGallery: React.FC<Props> = ({ projectId, classNam
               <button
                 key={screen.id}
                 onClick={() => setActiveScreenIndex(idx)}
-                className={`text-left p-1.5 border transition-all duration-150 text-xs cursor-pointer ${
+                className={`text-left p-1.5 border transition-all duration-150 cursor-pointer ${
                   isActive 
                     ? 'bg-black text-white font-bold border-black shadow-[2px_2px_0px_0px_rgba(255,85,0,1)]' 
                     : 'bg-white border-black/40 text-black hover:bg-zinc-200'
                 }`}
               >
-                <div className="text-[9px] truncate font-bold font-mono">0{idx + 1} // VIEW</div>
-                <div className={`text-[8px] truncate ${isActive ? 'text-orange-400' : 'text-zinc-500'}`}>
-                  {screen.subtitle.split('&')[0]}
+                <div className="text-[9px] font-bold font-mono">0{idx + 1}</div>
+                <div className={`text-[8.5px] truncate ${isActive ? 'text-orange-400' : 'text-zinc-600'}`}>
+                  {screen.title.split('. ')[1] || screen.title}
                 </div>
               </button>
             );
@@ -277,7 +276,7 @@ export const ProjectMultiScreenGallery: React.FC<Props> = ({ projectId, classNam
       </div>
 
       {/* Real Screenshot Viewport Frame */}
-      <div className="relative bg-black p-2 group">
+      <div className="relative bg-black p-1.5 group">
         <div 
           onClick={() => setIsLightboxOpen(true)}
           className="relative w-full aspect-[16/10] overflow-hidden border border-zinc-800 bg-zinc-950 cursor-zoom-in group"
@@ -289,7 +288,7 @@ export const ProjectMultiScreenGallery: React.FC<Props> = ({ projectId, classNam
               <img 
                 key={screen.id}
                 src={getImageUrl(screen.id)} 
-                alt={`${screen.title} - ${screen.subtitle}`}
+                alt={`${screen.title}`}
                 className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-200 ease-out will-change-transform ${
                   isCurrent 
                     ? 'opacity-100 scale-100 z-10 pointer-events-auto' 
@@ -301,8 +300,8 @@ export const ProjectMultiScreenGallery: React.FC<Props> = ({ projectId, classNam
           
           {/* Overlay Hover Hint */}
           <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-150 flex items-center justify-center pointer-events-none z-20">
-            <span className="px-3 py-1 bg-black text-white text-[11px] font-mono font-bold uppercase border border-orange-500 shadow-xl flex items-center gap-1.5">
-              <Maximize2 className="w-3 h-3 text-orange-500" /> FULL RESOLUTION INSPECT
+            <span className="px-2.5 py-1 bg-black text-white text-[10px] font-mono font-bold uppercase border border-orange-500 shadow-xl flex items-center gap-1.5">
+              <Maximize2 className="w-3 h-3 text-orange-500" /> INSPECT
             </span>
           </div>
         </div>
@@ -310,28 +309,27 @@ export const ProjectMultiScreenGallery: React.FC<Props> = ({ projectId, classNam
         {/* Prev / Next Navigation Floating Buttons */}
         <button
           onClick={(e) => { e.stopPropagation(); handlePrev(); }}
-          className="absolute left-3 top-1/2 -translate-y-1/2 w-8 h-8 bg-black hover:bg-orange-600 text-white border border-white/40 flex items-center justify-center shadow-lg transition-transform active:scale-90 cursor-pointer z-20"
+          className="absolute left-2.5 top-1/2 -translate-y-1/2 w-7 h-7 bg-black hover:bg-orange-600 text-white border border-white/40 flex items-center justify-center shadow-lg transition-transform active:scale-90 cursor-pointer z-20"
           title="Layar Sebelumnya"
         >
-          <ChevronLeft className="w-4 h-4" />
+          <ChevronLeft className="w-3.5 h-3.5" />
         </button>
 
         <button
           onClick={(e) => { e.stopPropagation(); handleNext(); }}
-          className="absolute right-3 top-1/2 -translate-y-1/2 w-8 h-8 bg-black hover:bg-orange-600 text-white border border-white/40 flex items-center justify-center shadow-lg transition-transform active:scale-90 cursor-pointer z-20"
+          className="absolute right-2.5 top-1/2 -translate-y-1/2 w-7 h-7 bg-black hover:bg-orange-600 text-white border border-white/40 flex items-center justify-center shadow-lg transition-transform active:scale-90 cursor-pointer z-20"
           title="Layar Berikutnya"
         >
-          <ChevronRight className="w-4 h-4" />
+          <ChevronRight className="w-3.5 h-3.5" />
         </button>
       </div>
 
-      {/* Screen Description Context Footer */}
-      <div className="p-2.5 sm:p-3 bg-zinc-50 border-t-2 border-black flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs">
-        <div key={activeScreen.id} className="animate-fadeIn truncate">
-          <span className="font-bold text-black font-mono">{activeScreen.title}: </span>
-          <span className="text-zinc-700 text-[11px] font-sans">{activeScreen.description}</span>
-        </div>
-        <span className="px-2 py-0.5 bg-orange-500 text-white font-mono text-[9px] font-bold uppercase tracking-wider shrink-0 self-start sm:self-auto">
+      {/* Sleek Minimal Caption Bar */}
+      <div className="px-3 py-2 bg-zinc-50 border-t-2 border-black flex items-center justify-between text-xs">
+        <span className="font-bold text-black font-mono text-[10.5px] truncate">
+          {activeScreen.title}
+        </span>
+        <span className="px-1.5 py-0.5 bg-orange-500 text-white font-mono text-[8.5px] font-bold uppercase tracking-wider shrink-0">
           {activeScreen.badge}
         </span>
       </div>

@@ -35,20 +35,20 @@ export const TechMatrix: React.FC = () => {
   ];
 
   return (
-    <section id="architecture" className="py-20 border-b-2 border-black bg-zinc-50">
+    <section id="architecture" className="py-16 border-b-2 border-black bg-zinc-50">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4 pb-6 border-b-2 border-black">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4 pb-4 border-b-2 border-black">
           <div>
-            <div className="inline-flex items-center gap-2 px-2.5 py-1 bg-black text-white text-[10px] font-mono font-bold uppercase tracking-widest mb-3">
-              <span className="w-1.5 h-1.5 bg-orange-500 rounded-full animate-pulse" />
-              SPEC // 04-QUADRANT STACK
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 bg-black text-white text-[10px] font-mono font-bold uppercase tracking-widest mb-2">
+              <span className="w-1.5 h-1.5 bg-orange-500 rounded-full" />
+              03 // CORE STACK
             </div>
-            <h2 className="text-3xl sm:text-4xl font-black text-black tracking-tight uppercase">
+            <h2 className="text-2xl sm:text-4xl font-black text-black tracking-tight uppercase">
               Kompetensi Rekayasa & Arsitektur
             </h2>
           </div>
-          <p className="text-xs sm:text-sm text-zinc-600 max-w-md font-mono leading-relaxed">
-            Menghubungkan ketelitian kode frontend dengan ketahanan sistem cloud enterprise, otomasi alur kerja operasional, dan analitik data terverifikasi.
+          <p className="text-xs text-zinc-600 max-w-sm font-mono">
+            Ketelitian frontend, ketahanan cloud enterprise, dan automasi sistem.
           </p>
         </div>
 
