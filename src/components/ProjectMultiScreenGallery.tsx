@@ -9,6 +9,7 @@ import {
 
 interface Props {
   projectId: string;
+  className?: string;
 }
 
 interface ScreenTab {
@@ -170,7 +171,7 @@ const SCREENS_BY_PROJECT: Record<string, ScreenTab[]> = {
   ]
 };
 
-export const ProjectMultiScreenGallery: React.FC<Props> = ({ projectId }) => {
+export const ProjectMultiScreenGallery: React.FC<Props> = ({ projectId, className = '' }) => {
   const screens = SCREENS_BY_PROJECT[projectId] || SCREENS_BY_PROJECT['community-scheduling'];
   const [activeScreenIndex, setActiveScreenIndex] = useState(0);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
@@ -208,63 +209,63 @@ export const ProjectMultiScreenGallery: React.FC<Props> = ({ projectId }) => {
   };
 
   return (
-    <div className="my-8 rounded-2xl bg-slate-900/5 p-3 sm:p-4 ring-1 ring-slate-200/90 shadow-diffusion overflow-hidden">
+    <div className={`rounded-2xl bg-slate-900/5 p-2.5 sm:p-3 ring-1 ring-slate-200/90 shadow-diffusion overflow-hidden ${className}`}>
       <div className="rounded-xl bg-white border border-slate-200 overflow-hidden font-sans">
         
-        {/* Gallery Header Bar: 30% Slate, 10% Blue Accent */}
-        <div className="bg-slate-100/90 border-b border-slate-200 p-3 sm:p-3.5">
-          <div className="flex flex-wrap items-center justify-between gap-2 mb-2.5 px-1">
-            <div className="flex items-center gap-2">
+        {/* Gallery Header Bar */}
+        <div className="bg-slate-100/90 border-b border-slate-200 p-2.5 sm:p-3">
+          <div className="flex flex-wrap items-center justify-between gap-2 mb-2 px-1">
+            <div className="flex items-center gap-1.5">
               <span className="w-2.5 h-2.5 rounded-full bg-slate-300"></span>
               <span className="w-2.5 h-2.5 rounded-full bg-slate-300"></span>
               <span className="w-2.5 h-2.5 rounded-full bg-slate-300"></span>
-              <span className="text-xs font-mono text-slate-700 font-bold ml-1 flex items-center gap-1.5">
-                <Sparkles className="w-3.5 h-3.5 text-blue-600" />
-                Tangkapan Layar Riil Chromium (5 Layar per Proyek)
+              <span className="text-[11px] font-mono text-slate-700 font-bold ml-1 flex items-center gap-1">
+                <Sparkles className="w-3 h-3 text-blue-600" />
+                Live Chromium Viewport
               </span>
             </div>
-            <div className="flex items-center gap-2">
-              <span className="text-[11px] font-mono font-bold text-slate-600 bg-white px-2.5 py-0.5 rounded-md border border-slate-200 shadow-2xs">
+            <div className="flex items-center gap-1.5">
+              <span className="text-[10px] font-mono font-bold text-slate-600 bg-white px-2 py-0.5 rounded border border-slate-200 shadow-2xs">
                 Layar {activeScreenIndex + 1} / 5
               </span>
               <button
                 onClick={() => setIsLightboxOpen(true)}
-                className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-md bg-white border border-slate-200 text-slate-700 text-[11px] font-medium hover:bg-slate-50 transition-colors shadow-2xs cursor-pointer"
+                className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-white border border-slate-200 text-slate-700 text-[10px] font-medium hover:bg-slate-50 transition-colors shadow-2xs cursor-pointer"
                 title="Buka Layar Penuh"
               >
-                <Maximize2 className="w-3 h-3 text-slate-500" />
+                <Maximize2 className="w-2.5 h-2.5 text-slate-500" />
                 <span>Perbesar</span>
               </button>
             </div>
           </div>
 
-          {/* Interactive Screen Selector: 60-30-10 Balanced */}
-          <div className="grid grid-cols-2 sm:grid-cols-5 gap-1.5">
+          {/* Interactive Screen Selector */}
+          <div className="grid grid-cols-5 gap-1">
             {screens.map((screen, idx) => {
               const isActive = idx === activeScreenIndex;
               return (
                 <button
                   key={screen.id}
                   onClick={() => setActiveScreenIndex(idx)}
-                  className={`text-left p-2 rounded-lg border transition-all duration-200 text-xs cursor-pointer ${
+                  className={`text-left p-1.5 rounded-md border transition-all duration-200 text-xs cursor-pointer ${
                     isActive 
-                      ? 'bg-white shadow-subtle font-bold text-slate-900 border-l-4 border-blue-600 border-slate-300' 
+                      ? 'bg-white shadow-subtle font-bold text-slate-900 border-l-3 border-blue-600 border-slate-300' 
                       : 'bg-slate-50/70 border-slate-200/70 text-slate-600 hover:bg-white hover:text-slate-900'
                   }`}
                 >
-                  <div className="text-[11px] truncate font-semibold">{screen.title}</div>
-                  <div className="text-[9px] text-slate-400 truncate mt-0.5">{screen.subtitle}</div>
+                  <div className="text-[10px] truncate font-semibold">Layar {idx + 1}</div>
+                  <div className="text-[8px] text-slate-400 truncate">{screen.subtitle.split('&')[0]}</div>
                 </button>
               );
             })}
           </div>
         </div>
 
-        {/* Real Screenshot Viewport Frame (Fixed Aspect Ratio with Silky Smooth Cross-Fade) */}
-        <div className="relative bg-slate-950 p-2 sm:p-4 group">
+        {/* Real Screenshot Viewport Frame */}
+        <div className="relative bg-slate-950 p-2 group">
           <div 
             onClick={() => setIsLightboxOpen(true)}
-            className="relative w-full aspect-[16/10] rounded-lg overflow-hidden border border-slate-800 shadow-2xl cursor-zoom-in bg-slate-900 transition-all hover:ring-2 hover:ring-blue-500/50"
+            className="relative w-full aspect-[16/10] rounded-lg overflow-hidden border border-slate-800 shadow-xl cursor-zoom-in bg-slate-900 transition-all hover:ring-2 hover:ring-blue-500/50"
           >
             {/* Stacked Preloaded Screen Images with GPU-accelerated Cross-Fade */}
             {screens.map((screen, idx) => {
@@ -274,7 +275,7 @@ export const ProjectMultiScreenGallery: React.FC<Props> = ({ projectId }) => {
                   key={screen.id}
                   src={getImageUrl(screen.id)} 
                   alt={`${screen.title} - ${screen.subtitle}`}
-                  className={`absolute inset-0 w-full h-full object-cover transition-all duration-400 ease-out will-change-transform ${
+                  className={`absolute inset-0 w-full h-full object-cover transition-all duration-300 ease-out will-change-transform ${
                     isCurrent 
                       ? 'opacity-100 scale-100 z-10 pointer-events-auto' 
                       : 'opacity-0 scale-[1.01] z-0 pointer-events-none'
@@ -285,8 +286,8 @@ export const ProjectMultiScreenGallery: React.FC<Props> = ({ projectId }) => {
             
             {/* Overlay Hover Hint */}
             <div className="absolute inset-0 bg-slate-950/20 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center pointer-events-none z-20">
-              <span className="px-3.5 py-1.5 rounded-full bg-slate-900/90 text-white text-xs font-semibold backdrop-blur-md border border-white/20 shadow-xl flex items-center gap-1.5">
-                <Maximize2 className="w-3.5 h-3.5 text-blue-400" /> Klik untuk Memperbesar Resolusi Penuh
+              <span className="px-3 py-1 rounded-full bg-slate-900/90 text-white text-[11px] font-semibold backdrop-blur-md border border-white/20 shadow-xl flex items-center gap-1.5">
+                <Maximize2 className="w-3 h-3 text-blue-400" /> Klik untuk Resolusi Penuh
               </span>
             </div>
           </div>
@@ -294,28 +295,28 @@ export const ProjectMultiScreenGallery: React.FC<Props> = ({ projectId }) => {
           {/* Prev / Next Navigation Floating Buttons */}
           <button
             onClick={(e) => { e.stopPropagation(); handlePrev(); }}
-            className="absolute left-4 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-slate-900/80 hover:bg-slate-900 text-white border border-slate-700 flex items-center justify-center shadow-lg transition-transform active:scale-90 cursor-pointer z-20"
-            title="Layar Sebelumnya (Panah Kiri)"
+            className="absolute left-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-slate-900/80 hover:bg-slate-900 text-white border border-slate-700 flex items-center justify-center shadow-lg transition-transform active:scale-90 cursor-pointer z-20"
+            title="Layar Sebelumnya"
           >
-            <ChevronLeft className="w-4 h-4" />
+            <ChevronLeft className="w-3.5 h-3.5" />
           </button>
 
           <button
             onClick={(e) => { e.stopPropagation(); handleNext(); }}
-            className="absolute right-4 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-slate-900/80 hover:bg-slate-900 text-white border border-slate-700 flex items-center justify-center shadow-lg transition-transform active:scale-90 cursor-pointer z-20"
-            title="Layar Berikutnya (Panah Kanan)"
+            className="absolute right-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-slate-900/80 hover:bg-slate-900 text-white border border-slate-700 flex items-center justify-center shadow-lg transition-transform active:scale-90 cursor-pointer z-20"
+            title="Layar Berikutnya"
           >
-            <ChevronRight className="w-4 h-4" />
+            <ChevronRight className="w-3.5 h-3.5" />
           </button>
         </div>
 
         {/* Screen Description Context Footer */}
-        <div className="p-3 sm:p-4 bg-slate-50 border-t border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs">
-          <div key={activeScreen.id} className="animate-fadeIn">
+        <div className="p-2.5 sm:p-3 bg-slate-50 border-t border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs">
+          <div key={activeScreen.id} className="animate-fadeIn truncate">
             <span className="font-bold text-slate-900">{activeScreen.title}: </span>
-            <span className="text-slate-600">{activeScreen.description}</span>
+            <span className="text-slate-600 text-[11px]">{activeScreen.description}</span>
           </div>
-          <span className="px-2.5 py-0.5 rounded bg-blue-50 text-blue-700 font-mono text-[10px] font-semibold border border-blue-200 shrink-0 self-start sm:self-auto shadow-2xs">
+          <span className="px-2 py-0.5 rounded bg-blue-50 text-blue-700 font-mono text-[9px] font-semibold border border-blue-200 shrink-0 self-start sm:self-auto shadow-2xs">
             {activeScreen.badge}
           </span>
         </div>
