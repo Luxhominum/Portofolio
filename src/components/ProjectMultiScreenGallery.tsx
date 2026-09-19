@@ -99,37 +99,37 @@ const SCREENS_BY_PROJECT: Record<string, ScreenTab[]> = {
     { 
       id: 'screen-1', 
       title: '1. PGE Talent Pool Repository', 
-      subtitle: 'Candidate Database & Status', 
+      subtitle: 'Candidate Master Hub & Status', 
       badge: 'Candidate Hub',
-      description: 'Repositori sentral pengelolaan database kandidat pelamar PGE dengan status seleksi terstruktur.'
+      description: 'Repositori sentral pengelolaan database pelamar PGE dengan status seleksi, filter divisi, dan rekam jejak kandidat terstruktur.'
     },
     { 
       id: 'screen-2', 
       title: '2. Pipeline & Screening Pelamar', 
       subtitle: 'Daftar Kandidat & Evaluasi Berkas', 
       badge: 'Screening Pipeline',
-      description: 'Monitoring tahapan screening berkas pelamar kerja, kualifikasi posisi, dan riwayat seleksi.'
+      description: 'Monitoring tahapan screening berkas pelamar kerja, kualifikasi posisi, dan riwayat seleksi lintas departemen.'
     },
     { 
       id: 'screen-3', 
       title: '3. Alur Rekrutmen Terpusat', 
-      subtitle: 'Workflow Tahapan Kandidat', 
+      subtitle: 'Workflow Tahapan Seleksi', 
       badge: 'Talent Workflow',
-      description: 'Manajemen alur seleksi terpadu mulai dari verifikasi CV hingga tahapan interview tim.'
+      description: 'Manajemen alur seleksi terpadu mulai dari verifikasi CV, undangan asesmen on-site, hingga interview hiring manager.'
     },
     { 
       id: 'screen-4', 
       title: '4. Portal Asesmen On-Site', 
-      subtitle: 'Pelaksanaan Uji Kompetensi', 
-      badge: 'Assessment Portal',
-      description: 'Portal pelaksanaan asesmen on-site PGE untuk pengujian kompetensi dan penilaian langsung peserta.'
+      subtitle: 'Pelaksanaan Uji Kompetensi Live', 
+      badge: 'Live Test Engine',
+      description: 'Portal pelaksanaan asesmen on-site dengan modul soal teknis, timer terintegrasi, dan penguncian sesi ujian anti-cheat.'
     },
     { 
       id: 'screen-5', 
-      title: '5. Rubrik Penilaian & Evaluasi', 
-      subtitle: 'Form Asesmen & Scoring Teruji', 
-      badge: 'Scoring Rubric',
-      description: 'Instrumen rubrik penilaian objektif berbasis kompetensi teknis dan indikator evaluasi peran.'
+      title: '5. Matriks Evaluasi Pasca-Tes', 
+      subtitle: 'Post-Test Scoring & Fit Decision Matrix', 
+      badge: 'Post-Test Matrix',
+      description: 'Matriks hasil pengujian otomatis seketika kandidat submit tes: komparasi skor teknis vs culture fit, kuadran rekomendasi, dan scorecard terukur.'
     },
   ],
   'methodology-iq': [

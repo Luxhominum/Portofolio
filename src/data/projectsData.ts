@@ -101,41 +101,41 @@ export const EDITORIAL_PROJECTS: EditorialProject[] = [
   },
   {
     id: 'enterprise-hr-governance',
-    title: 'PGE Talent Pool & Enterprise HR Assessment Portal',
-    category: 'Internal Enterprise Portal & HR Tech',
+    title: 'PGE Talent Pool & Post-Test Assessment Matrix Portal',
+    category: 'Enterprise HR Tech & Candidate Evaluation Matrix',
     domain: 'hr-enterprise',
     roleBadge: 'HR & Internal Systems Innovator',
-    tagline: 'Portal sentral untuk tata kelola kandidat pelamar, repositori database talent pool terstruktur, dan portal pelaksanaan asesmen on-site pengujian kompetensi.',
-    problem: 'Di lingkungan kantor, puluhan berkas pelamar kerja dan lembar penilaian asesmen kandidat tersebar tanpa repositori yang aman, memicu hilangnya jejak riwayat seleksi pelamar, serta proses penilaian wawancara dan tes kompetensi yang belum terstandarisasi.',
-    solution: 'Membangun portal kendali talent pool satu pintu (single-pane-of-glass) untuk memetakan seluruh database kandidat pelamar, mengelola alur tahapan rekrutmen terpusat, serta mengintegrasikan portal asesmen on-site dengan rubrik penilaian kompetensi terstruktur.',
+    tagline: 'Portal sentral tata kelola talent pool terstruktur yang mengotomasi pelaksanaan asesmen on-site dan menghasilkan matriks evaluasi kompetensi kandidat instan setelah tes selesai.',
+    problem: 'Di lingkungan kantor, berkas pelamar tersebar tanpa repositori aman, riwayat seleksi mudah hilang, dan pengoreksian hasil tes asesmen kompetensi memakan waktu berjam-jam secara manual sehingga HR kesulitan memetakan matriks kelayakan kandidat secara objektif.',
+    solution: 'Membangun portal kendali talent pool satu pintu (single-pane-of-glass) yang mengintegrasikan repositori kandidat, portal ujian asesmen on-site, dan mesin kalkulasi otomatis yang menerbitkan Matriks Evaluasi Pasca-Tes (Post-Test Competency & Fit Decision Matrix) secara instan seketika kandidat menyelesaikan tes.',
     beforeAfter: {
       before: [
-        'CV dan berkas pelamar tercecer di email, spreadsheet, dan folder lokal.',
-        'Penilaian asesmen wawancara belum terstandar dan sulit ditelusuri riwayatnya.',
-        'Penjadwalan interview rentan bentrok slot waktu penguji.'
+        'CV dan berkas pelamar tercecer di email, spreadsheet, dan folder lokal tanpa repositori terpadu.',
+        'Hasil tes asesmen dikoreksi manual berjam-jam tanpa matriks pemetaan kompetensi objektif.',
+        'Penjadwalan interview rentan bentrok slot waktu penguji dan feedback penilaian tidak terdokumentasi.'
       ],
       after: [
-        'Central Candidate Repository: Master pool database seluruh pelamar aktif.',
-        'Portal pengujian kompetensi on-site live dengan rubrik penilaian terukur.',
-        'Smart Interview Scheduler dengan alokasi slot otomatis & auto-dispatch WA.'
+        'Central Candidate Repository: Master pool database seluruh pelamar aktif terindeks rapi.',
+        'Post-Test Evaluation Matrix: Matriks skor kompetensi & kuadran kelayakan terbit instan saat tes disubmit.',
+        'Smart Interview Scheduler dengan alokasi slot otomatis & auto-dispatch pesan WhatsApp terstruktur.'
       ],
-      roiHighlight: '3x Kecepatan Screening & Standardisasi 100% Asesmen On-Site'
+      roiHighlight: 'Hasil Matriks Evaluasi Terbit Instan & 3x Kecepatan Screening Kandidat'
     },
     architectureDetails: [
-      'Candidate Repository Database: Mengindeks dan mengorganisir seluruh data kandidat pelamar, riwayat seleksi, dan kualifikasi posisi.',
-      'Structured Assessment Portal: Portal khusus pelaksanaan asesmen on-site untuk pengujian kompetensi teknis dan nilai peran.',
-      'End-to-End Talent Pipeline: Modul tracking kandidat terpadu mulai dari screening CV, scoring asesmen, hingga tahapan penawaran kerja.',
-      'Central Operations Navigator: Direktori navigasi terpadu untuk monitoring status rekrutmen dan evaluasi tim HR secara real-time.'
+      'Candidate Repository Database: Mengindeks dan mengorganisir seluruh data kandidat pelamar, riwayat seleksi, dan status kualifikasi posisi.',
+      'On-Site Assessment Engine: Portal interaktif pelaksanaan tes kompetensi teknis di tempat dengan penguncian sesi ujian anti-manipulasi.',
+      'Post-Test Candidate Evaluation Matrix: Mesin kalkulasi otomatis yang mengagregasi skor tes kompetensi, logika analitik, dan penilaian peran ke dalam kuadran hiring recommendation instan.',
+      'End-to-End Talent Pipeline: Modul tracking kandidat terpadu mulai dari screening CV, scoring asesmen pasca-tes, hingga penawaran kerja (offering).'
     ],
     keyFeatures: [
-      { title: 'Candidate Repository Hub', description: 'Database terpusat seluruh profil pelamar kerja lengkap dengan status seleksi dan catatan kualifikasi.' },
+      { title: 'Post-Test Candidate Evaluation Matrix', description: 'Matriks komparasi multi-dimensi otomatis yang langsung memetakan kompetensi teknis vs kesesuaian peran saat kandidat selesai ujian.' },
       { title: 'On-Site Assessment Portal', description: 'Portal interaktif pelaksanaan asesmen kandidat dengan form pengujian kompetensi langsung di tempat.' },
-      { title: 'Structured Scoring Rubric', description: 'Instrumen rubrik penilaian objektif dengan bobot kompetensi terukur untuk rekomendasi hiring.' }
+      { title: 'Structured Scoring Rubric & Decision Grid', description: 'Instrumen rubrik penilaian objektif dengan pembobotan otomatis untuk rekomendasi hiring (Fast Track / Review / Pool).' }
     ],
     impactMetrics: [
-      { value: '100%', label: 'Sentralisasi Talent', description: 'Seluruh database kandidat terdata dalam 1 repositori' },
-      { value: 'Terstandar', label: 'Portal Asesmen', description: 'Pelaksanaan uji kompetensi on-site terstruktur rapi' },
-      { value: 'End-to-End', label: 'Alur Rekrutmen', description: 'Screening hingga offering terdokumentasi akurat' }
+      { value: '0 Detik', label: 'Post-Test Matrix', description: 'Matriks evaluasi & kuadran kompetensi terbit instan saat tes selesai' },
+      { value: '100%', label: 'Sentralisasi Talent', description: 'Seluruh database kandidat terdata dalam 1 repositori aman' },
+      { value: 'Terstandar', label: 'Rubrik Asesmen', description: 'Standardisasi uji kompetensi objektif berbasis kriteria terukur' }
     ],
     techStack: ['React 19', 'TypeScript', 'Tailwind CSS', 'Cloud Firestore', 'Assessment Engine', 'RBAC Architecture']
   },

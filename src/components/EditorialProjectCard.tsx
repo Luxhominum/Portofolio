@@ -25,17 +25,33 @@ interface Props {
   index: number;
 }
 
-type InfoTab = 'solution' | 'transformation' | 'architecture' | 'metrics';
+type InfoTab = 'solution' | 'transformation' | 'matrix' | 'architecture' | 'metrics';
 
 export const EditorialProjectCard: React.FC<Props> = ({ project, index }) => {
+  const isHRProject = project.id === 'enterprise-hr-governance';
   const [activeTab, setActiveTab] = useState<InfoTab>('solution');
+  const [simulatedScore, setSimulatedScore] = useState<number>(92);
+  const [dispatched, setDispatched] = useState<boolean>(false);
 
-  const tabs: { id: InfoTab; label: string; icon: React.ReactNode }[] = [
+  const baseTabs: { id: InfoTab; label: string; icon: React.ReactNode }[] = [
     { id: 'solution', label: '01 // PROBLEM & SOLUTION', icon: <AlertCircle className="w-3.5 h-3.5" /> },
     { id: 'transformation', label: '02 // BEFORE VS AFTER', icon: <Zap className="w-3.5 h-3.5" /> },
-    { id: 'architecture', label: '03 // ARCHITECTURE', icon: <Layers className="w-3.5 h-3.5" /> },
-    { id: 'metrics', label: '04 // IMPACT METRICS', icon: <TrendingUp className="w-3.5 h-3.5" /> },
   ];
+
+  if (isHRProject) {
+    baseTabs.push({ 
+      id: 'matrix', 
+      label: '★ 03 // POST-TEST MATRIX', 
+      icon: <SlidersHorizontal className="w-3.5 h-3.5 text-orange-600" /> 
+    });
+  }
+
+  baseTabs.push(
+    { id: 'architecture', label: isHRProject ? '04 // ARCHITECTURE' : '03 // ARCHITECTURE', icon: <Layers className="w-3.5 h-3.5" /> },
+    { id: 'metrics', label: isHRProject ? '05 // IMPACT METRICS' : '04 // IMPACT METRICS', icon: <TrendingUp className="w-3.5 h-3.5" /> }
+  );
+
+  const tabs = baseTabs;
 
   const getIcon = () => {
     switch (project.id) {
@@ -77,6 +93,11 @@ export const EditorialProjectCard: React.FC<Props> = ({ project, index }) => {
     setActiveTab(tabs[prevIdx].id);
   };
 
+  const handleSimulatedDispatch = () => {
+    setDispatched(true);
+    setTimeout(() => setDispatched(false), 3500);
+  };
+
   const liveUrl = getLiveUrl();
 
   return (
@@ -99,6 +120,12 @@ export const EditorialProjectCard: React.FC<Props> = ({ project, index }) => {
               <span className="px-2 py-0.5 text-[10px] font-bold uppercase bg-zinc-100 text-black border border-black">
                 {project.roleBadge}
               </span>
+              {isHRProject && (
+                <span className="px-2 py-0.5 text-[10px] font-bold uppercase bg-black text-orange-400 border border-orange-500 animate-pulse flex items-center gap-1">
+                  <span className="w-1.5 h-1.5 bg-orange-500 rounded-full"></span>
+                  HIGHLIGHT: POST-TEST DECISION MATRIX
+                </span>
+              )}
             </div>
             <h3 className="text-xl sm:text-3xl font-black text-black tracking-tight uppercase mt-1">
               {project.title}
@@ -163,16 +190,18 @@ export const EditorialProjectCard: React.FC<Props> = ({ project, index }) => {
             </div>
 
             {/* Sub-Tab Selector Pills */}
-            <div className="grid grid-cols-2 gap-1.5 mb-4 font-mono">
+            <div className={`grid ${isHRProject ? 'grid-cols-2 sm:grid-cols-3' : 'grid-cols-2'} gap-1.5 mb-4 font-mono`}>
               {tabs.map((tab) => {
                 const isActive = activeTab === tab.id;
                 return (
                   <button
                     key={tab.id}
                     onClick={() => setActiveTab(tab.id)}
-                    className={`flex items-center gap-1.5 px-2.5 py-1.5 text-[10px] font-bold uppercase transition-all duration-150 cursor-pointer border ${
+                    className={`flex items-center gap-1.5 px-2 py-1.5 text-[9.5px] font-bold uppercase transition-all duration-150 cursor-pointer border ${
                       isActive
                         ? 'bg-black text-white border-black shadow-[2px_2px_0px_0px_rgba(255,85,0,1)]'
+                        : tab.id === 'matrix'
+                        ? 'bg-orange-100 text-orange-950 border-orange-400 hover:bg-orange-200'
                         : 'bg-white text-black border-black/40 hover:bg-zinc-200'
                     }`}
                   >
@@ -209,6 +238,110 @@ export const EditorialProjectCard: React.FC<Props> = ({ project, index }) => {
                     <p className="text-xs text-zinc-800 leading-relaxed font-sans">
                       {project.solution}
                     </p>
+                  </div>
+                </div>
+              )}
+
+              {/* TAB: Post-Test Candidate Matrix Feature Spotlight (for HR project) */}
+              {activeTab === 'matrix' && isHRProject && (
+                <div className="space-y-3 font-mono animate-fadeIn">
+                  <div className="p-3 bg-black text-white border-2 border-black">
+                    <div className="flex items-center justify-between text-[10px] pb-1.5 mb-2 border-b border-zinc-700">
+                      <span className="text-orange-400 font-bold uppercase flex items-center gap-1">
+                        <span className="w-1.5 h-1.5 bg-orange-500 rounded-full animate-ping"></span>
+                        POST-TEST SCORING DISPATCH
+                      </span>
+                      <span className="text-zinc-300">TEST STATUS: SUBMITTED (100%)</span>
+                    </div>
+
+                    {/* Candidate Matrix Score Summary */}
+                    <div className="grid grid-cols-3 gap-2 text-center my-2">
+                      <div className="p-1.5 bg-zinc-900 border border-zinc-700">
+                        <div className="text-[9px] text-zinc-400 uppercase">Tech Score</div>
+                        <div className="text-sm font-black text-orange-400">{simulatedScore}%</div>
+                      </div>
+                      <div className="p-1.5 bg-zinc-900 border border-zinc-700">
+                        <div className="text-[9px] text-zinc-400 uppercase">Logic / Speed</div>
+                        <div className="text-sm font-black text-white">88% (24m)</div>
+                      </div>
+                      <div className="p-1.5 bg-zinc-900 border border-zinc-700">
+                        <div className="text-[9px] text-zinc-400 uppercase">Decision</div>
+                        <div className="text-xs font-black text-green-400">
+                          {simulatedScore >= 85 ? 'FAST-TRACK' : simulatedScore >= 70 ? 'SPECIALIST' : 'TALENT POOL'}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Interactive Score Simulation Slider */}
+                    <div className="pt-2 border-t border-zinc-800">
+                      <div className="flex justify-between text-[9px] text-zinc-400 mb-1">
+                        <span>SIMULASIKAN SKOR TES KANDIDAT:</span>
+                        <span className="text-orange-400 font-bold">{simulatedScore}/100</span>
+                      </div>
+                      <input 
+                        type="range" 
+                        min="50" 
+                        max="98" 
+                        value={simulatedScore}
+                        onChange={(e) => setSimulatedScore(Number(e.target.value))}
+                        className="w-full h-1 bg-zinc-700 accent-orange-500 cursor-pointer"
+                      />
+                    </div>
+                  </div>
+
+                  {/* 4-Quadrant Matrix Output */}
+                  <div className="p-3 bg-white border-2 border-black text-xs font-sans">
+                    <div className="font-mono font-bold text-[10px] text-zinc-700 uppercase tracking-wider mb-2 flex items-center justify-between">
+                      <span>MATRIKS KUADRAN REKOMENDASI HIRING:</span>
+                      <span className="text-orange-600 font-bold">AUTOMATED ENGINE</span>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-1.5 font-mono text-[10px]">
+                      <div className={`p-2 border transition-all ${
+                        simulatedScore >= 85 
+                          ? 'bg-orange-500 text-white border-black font-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]' 
+                          : 'bg-zinc-50 border-zinc-200 text-zinc-400'
+                      }`}>
+                        <div className="font-bold">Q1: FAST-TRACK HIRE</div>
+                        <div className="text-[8.5px] opacity-90 mt-0.5">High Tech + High Fit &rarr; Offer Brief Langsung</div>
+                      </div>
+
+                      <div className={`p-2 border transition-all ${
+                        simulatedScore >= 70 && simulatedScore < 85
+                          ? 'bg-orange-500 text-white border-black font-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]' 
+                          : 'bg-zinc-50 border-zinc-200 text-zinc-400'
+                      }`}>
+                        <div className="font-bold">Q2: SPECIALIST ROLE</div>
+                        <div className="text-[8.5px] opacity-90 mt-0.5">High Tech + Med Fit &rarr; Interview Lead Tim</div>
+                      </div>
+
+                      <div className={`p-2 border transition-all ${
+                        simulatedScore < 70
+                          ? 'bg-black text-white border-black font-black shadow-[2px_2px_0px_0px_rgba(255,85,0,1)]' 
+                          : 'bg-zinc-50 border-zinc-200 text-zinc-400'
+                      }`}>
+                        <div className="font-bold">Q3: TALENT ARCHIVE</div>
+                        <div className="text-[8.5px] opacity-90 mt-0.5">Below Threshold &rarr; Simpan Database Pool</div>
+                      </div>
+
+                      <div className="p-2 border bg-zinc-50 border-zinc-200 text-zinc-500">
+                        <div className="font-bold">Q4: ASSOCIATE / INTERN</div>
+                        <div className="text-[8.5px] opacity-90 mt-0.5">High Potential &rarr; Program Mentorship</div>
+                      </div>
+                    </div>
+
+                    {/* Instant Action Trigger */}
+                    <div className="mt-3 pt-2.5 border-t border-zinc-200 flex items-center justify-between">
+                      <span className="text-[10px] text-zinc-600 font-mono">
+                        {dispatched ? '✅ WhatsApp Terjadwal Otomatis!' : 'Aksi Otomatis Pasca-Tes:'}
+                      </span>
+                      <button
+                        onClick={handleSimulatedDispatch}
+                        className="px-2.5 py-1 bg-black hover:bg-orange-600 text-white text-[10px] font-mono font-bold uppercase transition-colors cursor-pointer"
+                      >
+                        {dispatched ? 'TERDISPATCH' : 'DISPATCH UNDANGAN WA'}
+                      </button>
+                    </div>
                   </div>
                 </div>
               )}
